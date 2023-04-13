@@ -1,0 +1,2 @@
+# chessManager
+ Chess tournament manager 
