@@ -8,4 +8,8 @@ class Tournament():
         self.players = players
         self.time_control = time_control
         self.description = description
+        
+    def get_name(self):
+        return __name__
+        
      
