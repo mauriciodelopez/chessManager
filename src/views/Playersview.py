@@ -1,8 +1,5 @@
 #from {archivo} import {clase}
 
-from models.players import Player
-from models.round import Round
-from models.tournament import Tournament
 from controllers.TournamentController import TournamentController
 
 #define the class, to create view, the view is an objet and has attributes,
@@ -24,9 +21,9 @@ class Playersview:
         if input_menu == 1 : 
             self.tournament_view()#pour appeler une fonction qui se trouve dans la même classe 
             
-        elif input_menu == 2 : 
-        elif input_menu == 3 :
-        elif input_menu == 4 :
+        #elif input_menu == 2 : 
+        #elif input_menu == 3 :
+        #elif input_menu == 4 :
         else : print("enter a valid value")
     
     def tournament_view(self):
@@ -45,7 +42,8 @@ class Playersview:
 
         
            
-    
+if __name__ == '__main__':
+    Playersview().showMenu()
         
        
     
