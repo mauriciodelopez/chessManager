@@ -1,31 +1,17 @@
 #from {archivo} import {clase}
-
-from controllers.TournamentController import TournamentController
-
-#define the class, to create view, the view is an objet and has attributes,
-
-#separate tasks, divide the responsabilities 
-#menu(method) submenu(submetodo an methode who call an other methode)
-
 class Playersview:
     
-    tc = TournamentController()
-    def showMenu(self):
-        print("1-Create a tournament go view #2")
-        print("2-Resume tournament go view #8")
-        print("3-Create players go view #5" )
-        print("4-Reports go view #7")
-
-        input_menu = input("enter option")
-        
-        if input_menu == 1 : 
-            self.tournament_view()#pour appeler une fonction qui se trouve dans la même classe 
-            
-        #elif input_menu == 2 : 
-        #elif input_menu == 3 :
-        #elif input_menu == 4 :
-        else : print("enter a valid value")
     
+    def showMenu(self):
+        print('Hello, please select a action')
+        print('1: Create a tournament go view #2')
+        print('2: Resume tournament go view #8')
+        print('3: Create players go view #5' )
+        print('4: Reports go view #7')
+    
+        response = input("enter option: ")
+        return response
+         
     def tournament_view(self):
         inputTournament = input("enter the name of tournament")
         input_location = input("Enter the town of tournament")
@@ -36,16 +22,26 @@ class Playersview:
         input_time_control = input("enter the time_control")
         input_description = input("enter description of tournament")
         
-        #paso los parametros 
-        self.tc.create_a_tournament(inputTournament,input_location,input_date_start,input_date_end,input_rounds,input_players,input_time_control,input_description)
+        return {'name': inputTournament, 'location': input_location, 'date_start': input_date_start, 'date_end': input_date_end,
+                'rounds': input_rounds, 'players': input_players, 'time_control': input_time_control, 'description': input_description}
         
-
+    def resume_tournament_view(self):
+        input_score = input("Please enter the score of the completed match ")
         
-           
-if __name__ == '__main__':
-    Playersview().showMenu()
+        return{'final_score': input_score}   
+    
+    def newplayer_view(self):
+        input_first_name = input("Insert first_name: ")
+        input_last_name = input("Insert the last name of player:  ")
+        input_date_of_birth = input("Insert the date_of_birth: ")
+        input_gender = input("insert gender of player: ")
         
-       
+        return{'first_name': input_first_name, 'last_name': input_last_name, 'date_of_birth': input_date_of_birth, 'gender': input_gender}
+        
+        
+    
+        
+        
     
     
     

@@ -9,7 +9,6 @@ class Tournament():
         self.time_control = time_control
         self.description = description
         
-    def get_name(self):
-        return __name__
+   
         
      
