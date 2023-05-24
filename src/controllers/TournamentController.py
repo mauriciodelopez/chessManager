@@ -1,20 +1,21 @@
-from views.Playersview import Playersview
+#from views.Playersview import Playersview
 from models.tournament import Tournament
 from models.matches import Matche
 from models.players import Player
 
 class TournamentController:
-    def __init__(self):
-        self.pv = Playersview()
+    tournament = None
+    #def __init__(self):
+        #self.pv = Playersview()
     
-    def showMenu(self):
+    """def showMenu(self):
         choice = self.pv.showMenu()
         if choice == "1":
             self.tournament_view()
         elif choice == "2":
             self.resume_tournament_view()
         elif choice == "3":
-            self.newplayer_view()
+            self.newplayer_view()"""
     
         
     def tournament_view(self):
@@ -30,20 +31,27 @@ class TournamentController:
         print(nouveautournois.time_control)
         print(nouveautournois.description)
         
+    def create_tournament(self, inputTournament, input_location, input_date_start, input_date_end,
+                          input_rounds, input_time_control, input_description):
+        self.tournament = Tournament(inputTournament, input_location, input_date_start, input_date_end, 
+                                     input_rounds, input_time_control, input_description)
+        
+        
     def resume_tournament_view(self):
         resume_values = self.pv.resume_tournament_view()
         nouveauresume = Matche(resume_values['final_score'])
         
         print(nouveauresume.final_score)
         
-    def newplayer_view(self):
-        newplayer_values = self.pv.newplayer_view()
-        nouveauplayer = Player(newplayer_values['first_name'], newplayer_values['last_name'], newplayer_values['date_of_birth'], newplayer_values['gender'])
+    def add_new_player(self, input_first_name, input_last_name, input_date_of_birth, input_gender):
+        player = Player(input_first_name, input_last_name, input_date_of_birth, input_gender)
+        self.tournament.add_player(player)
         
-        print(nouveauplayer.first_name)
-        print(nouveauplayer.last_name)
-        print(nouveauplayer.date_of_birth)
-        print(nouveauplayer.gender)
+        
+    def get_players(self):
+        return self.tournament.return_players()
+        
+        
         
         
         
