@@ -1,4 +1,7 @@
 class Tournament():
+    
+    tournament_list = []
+
     def __init__(self, name, location, date_start, date_end, rounds, time_control, description):
         self.name = name
         self.location = location

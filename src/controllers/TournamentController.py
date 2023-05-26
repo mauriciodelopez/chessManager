@@ -2,6 +2,7 @@
 from models.tournament import Tournament
 from models.matches import Matche
 from models.players import Player
+from views.MainView import TournamentController
 
 class TournamentController:
     tournament = None
@@ -18,23 +19,32 @@ class TournamentController:
             self.newplayer_view()"""
     
         
-    def tournament_view(self):
-        tournament_values = self.pv.tournament_view()
-        nouveautournois = Tournament(tournament_values['name'], tournament_values['location'], tournament_values['date_start'], tournament_values['date_end'], tournament_values['rounds'], tournament_values['players'], tournament_values['time_control'], tournament_values['description'])
+    def tournament_view():
         
-        print(nouveautournois.name)
-        print(nouveautournois.location)
-        print(nouveautournois.date_start)
-        print(nouveautournois.date_end)
-        print(nouveautournois.rounds)
-        print(nouveautournois.players)
-        print(nouveautournois.time_control)
-        print(nouveautournois.description)
+        tournament_values = TournamentController.tournament_view()
+        nouveau_tournois = Tournament(
+            tournament_values['name'], 
+            tournament_values['location'], 
+            tournament_values['date_start'], 
+            tournament_values['date_end'], 
+            tournament_values['rounds'], 
+            #tournament_values['players'], 
+            tournament_values['time_control'], 
+            tournament_values['description'])
         
-    def create_tournament(self, inputTournament, input_location, input_date_start, input_date_end,
-                          input_rounds, input_time_control, input_description):
-        self.tournament = Tournament(inputTournament, input_location, input_date_start, input_date_end, 
-                                     input_rounds, input_time_control, input_description)
+        print(nouveau_tournois.name)
+        print(nouveau_tournois.location)
+        print(nouveau_tournois.date_start)
+        print(nouveau_tournois.date_end)
+        print(nouveau_tournois.rounds)
+        print(nouveau_tournois.players)
+        print(nouveau_tournois.time_control)
+        print(nouveau_tournois.description)
+        
+    #def create_tournament(self, inputTournament, input_location, input_date_start, input_date_end,
+                          #input_rounds, input_time_control, input_description):
+        #self.tournament = Tournament(inputTournament, input_location, input_date_start, input_date_end, 
+                                    #input_rounds, input_time_control, input_description)
         
         
     def resume_tournament_view(self):
