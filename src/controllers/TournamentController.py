@@ -2,10 +2,9 @@
 from models.tournament import Tournament
 from models.matches import Matche
 from models.players import Player
-from views.MainView import TournamentController
 
 class TournamentController:
-    tournament = None
+
     #def __init__(self):
         #self.pv = Playersview()
     
@@ -32,6 +31,8 @@ class TournamentController:
             tournament_values['time_control'], 
             tournament_values['description'])
         
+        
+        
         print(nouveau_tournois.name)
         print(nouveau_tournois.location)
         print(nouveau_tournois.date_start)
@@ -41,10 +42,10 @@ class TournamentController:
         print(nouveau_tournois.time_control)
         print(nouveau_tournois.description)
         
-    #def create_tournament(self, inputTournament, input_location, input_date_start, input_date_end,
-                          #input_rounds, input_time_control, input_description):
-        #self.tournament = Tournament(inputTournament, input_location, input_date_start, input_date_end, 
-                                    #input_rounds, input_time_control, input_description)
+    def create_tournament(self, inputTournament, input_location, input_date_start, input_date_end,
+                          input_rounds, input_time_control, input_description):
+        self.tournament = Tournament(inputTournament, input_location, input_date_start, input_date_end, 
+                                    input_rounds, input_time_control, input_description)
         
         
     def resume_tournament_view(self):

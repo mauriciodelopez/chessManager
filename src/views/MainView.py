@@ -1,10 +1,11 @@
 #from {archivo} import {clase}
 
 from controllers.TournamentController import TournamentController
+from models.tournament import Tournament
+tc = TournamentController()
 
 class MainView:
     
-    tc = TournamentController()
     
     def showMenu(self):
         print('Hello, please select a action')
@@ -12,16 +13,24 @@ class MainView:
         print('2: Resume tournament go view #8')
         print('3: Create players go view #5' )
         print('4: Reports go view #7')
-    
-        choice = input("enter option: ")
+        print('0: Exit')
+        
         
     
-        if choice == "1":
-            self.tournament_view()
-        elif choice == "2":
-            self.resume_tournament_view()
-        elif choice == "3":
-            self.newplayer_view()
+        
+        choice=None
+        while(choice!=0):
+            choice = input("enter option: ")
+            if choice == "1":
+                self.tournament_view()
+            elif choice == "2":
+                self.resume_tournament_view()
+            elif choice == "3":
+                self.newplayer_view()
+            elif choice=="0":
+                print("Exit...")
+                break
+
             
     
     
@@ -36,8 +45,8 @@ class MainView:
         input_time_control = input("enter the time_control")
         input_description = input("enter description of tournament")
         
-        #self.tc.create_tournament(inputTournament, input_location, input_date_start, input_date_end, input_rounds, input_time_control, input_description)
-        
+        tc.create_tournament(inputTournament, input_location, input_date_start, input_date_end, input_rounds, input_time_control, input_description)
+    
         return 
         {
             'name': inputTournament, 
@@ -64,15 +73,14 @@ class MainView:
         input_date_of_birth = input("Insert the date_of_birth: ")
         input_gender = input("insert gender of player: ")
         
-        self.tc.add_new_player(input_first_name, input_last_name, input_date_of_birth, input_gender)
+        tc.add_new_player(input_first_name, input_last_name, input_date_of_birth, input_gender)
         self.showplayerslist()
         #return{'first_name': input_first_name, 'last_name': input_last_name, 'date_of_birth': input_date_of_birth, 'gender': input_gender}
         
     def showplayerslist(self):
-        players_list = self.tc.get_players()
-        
+        players_list = tc.get_players()
         for p in players_list:
-            print(p.name)
+            print(p.first_name)
     
         
             
