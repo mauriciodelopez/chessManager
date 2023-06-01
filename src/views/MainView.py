@@ -45,10 +45,17 @@ class MainView:
         input_time_control = input("enter the time_control")
         input_description = input("enter description of tournament")
         
-        tc.create_tournament(inputTournament, input_location, input_date_start, input_date_end, input_rounds, input_time_control, input_description)
+        tc.create_tournament(
+                            inputTournament,
+                            input_location, 
+                            input_date_start, 
+                            input_date_end, 
+                            input_rounds, 
+                            input_time_control, 
+                            input_description
+                            )
     
-        return 
-        {
+        return {
             'name': inputTournament, 
             'location': input_location, 
             'date_start': input_date_start, 
@@ -57,7 +64,7 @@ class MainView:
             #'players': input_players, 
             'time_control': input_time_control, 
             'description': input_description
-        }
+            }
         
         
     
