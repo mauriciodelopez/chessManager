@@ -1,6 +1,6 @@
 from controllers.TournamentController import TournamentController
-from views.MainView import MainView
+from controllers.mainController import MainController
 
 
-mainView = MainView()
-mainView.showMenu()
+#mainView = MainView()
+MainController.main_menu()

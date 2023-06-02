@@ -1,13 +1,13 @@
 #from {archivo} import {clase}
 
-from controllers.TournamentController import TournamentController
+#from controllers.TournamentController import TournamentController
 from models.tournament import Tournament
-tc = TournamentController()
+#tc = TournamentController()
 
 class MainView:
     
-    
-    def showMenu(self):
+    @classmethod   
+    def showMenu(cls):
         print('Hello, please select a action')
         print('1: Create a tournament go view #2')
         print('2: Resume tournament go view #8')
@@ -18,18 +18,11 @@ class MainView:
         
     
         
-        choice=None
-        while(choice!=0):
-            choice = input("enter option: ")
-            if choice == "1":
-                self.tournament_view()
-            elif choice == "2":
-                self.resume_tournament_view()
-            elif choice == "3":
-                self.newplayer_view()
-            elif choice=="0":
-                print("Exit...")
-                break
+        choice= -1
+        while(choice < 0 or choice > 4):
+            choice = int(input("enter option: "))
+        
+        return choice
 
             
     
@@ -45,15 +38,16 @@ class MainView:
         input_time_control = input("enter the time_control")
         input_description = input("enter description of tournament")
         
-        tc.create_tournament(
-                            inputTournament,
-                            input_location, 
-                            input_date_start, 
-                            input_date_end, 
-                            input_rounds, 
-                            input_time_control, 
-                            input_description
-                            )
+        """TournamentController.create_tournament
+        (
+            inputTournament,
+            input_location, 
+            input_date_start, 
+            input_date_end, 
+            input_rounds, 
+            input_time_control, 
+            input_description
+        )"""
     
         return {
             'name': inputTournament, 
@@ -67,28 +61,37 @@ class MainView:
             }
         
         
-    
-    def resume_tournament_view(self):
+    @staticmethod
+    def resume_tournament_view():
         input_score = input("Please enter the score of the completed match ")
         
         return{'final_score': input_score}   
     
-    
-    def newplayer_view(self):
+    @classmethod
+    def newplayer_view(cls):
         input_first_name = input("Insert first_name: ")
         input_last_name = input("Insert the last name of player:  ")
         input_date_of_birth = input("Insert the date_of_birth: ")
         input_gender = input("insert gender of player: ")
         
-        tc.add_new_player(input_first_name, input_last_name, input_date_of_birth, input_gender)
-        self.showplayerslist()
+        #TournamentController.add_new_player(input_first_name, input_last_name, input_date_of_birth, input_gender)
+        #cls.showplayerslist()
         #return{'first_name': input_first_name, 'last_name': input_last_name, 'date_of_birth': input_date_of_birth, 'gender': input_gender}
-        
-    def showplayerslist(self):
-        players_list = tc.get_players()
-        for p in players_list:
-            print(p.first_name)
     
+    
+    """@staticmethod    
+    def showplayerslist():
+        players_list = TournamentController.get_players()
+        for p in players_list:
+            print(p.first_name)"""
+    
+    
+    
+    @staticmethod    
+    def show_tournament_list(tournament_list):
+        #tournament_list = TournamentController.tournaments()
+        for t in tournament_list:
+            print(t.name)
         
             
     
