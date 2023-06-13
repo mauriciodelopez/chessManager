@@ -6,19 +6,11 @@ from views.MainView import MainView
 
 class TournamentController:
     
-    tournaments = []
+    
     
     #def __init__(self):
         #self.pv = Playersview()
     
-    """def showMenu(self):
-        choice = self.pv.showMenu()
-        if choice == "1":
-            self.tournament_view()
-        elif choice == "2":
-            self.resume_tournament_view()
-        elif choice == "3":
-            self.newplayer_view()"""
     
         
     def tournament_get():
