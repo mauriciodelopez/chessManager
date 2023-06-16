@@ -13,12 +13,13 @@ class MainView:
         print('4: Create round')
         print('5: Create match')
         print('6: Reports go view #7')
+        print('7: Default')
         print('0: Exit')
         print("\n__________________________________\n\n")
         
                 
         choice= -1
-        while(choice < 0 or choice > 6):
+        while(choice < 0 or choice > 7):
             choice = int(input("Enter option: "))
             
         
@@ -27,6 +28,7 @@ class MainView:
               
     @staticmethod     
     def tournament_view():
+        
         inputTournament = input("Enter the name of tournament:  ")
         input_location = input("Enter the town of tournament:  ")
         input_date_start = input("Enter the date of tournament start:  ")

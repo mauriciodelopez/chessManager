@@ -14,7 +14,10 @@ class Tournament():
         self.time_control = time_control
         self.description = description
         
-    def add_player(self,player):
+    def __str__(self):
+        return f"name =  {self.name}, location = {self.date_start}, date_start = {self.date_start}, date_end = {self.date_end}, time_control = {self.time_control}, description = {self.description}"
+        
+    def add_player(self,player):    
         self.players.append(player)
     
     def add_round(self,round):
