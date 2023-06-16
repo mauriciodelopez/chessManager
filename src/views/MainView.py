@@ -124,9 +124,10 @@ class MainView:
             print("Number Rounds: ",t.number_rounds)
             print("Time Control: ",t.time_control)
             print("Description: ",t.description)
-            print("Players_ name: ",t.players [0].first_name)
+            print("Players_ name: ",t.players [1].first_name)
             print("Rounds_name: ",t.rounds [0].name)
             print("Matches_score:",t.rounds [0].matches[0].scorePlayer1)
+            
             
         
             

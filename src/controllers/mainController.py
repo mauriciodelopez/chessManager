@@ -11,8 +11,7 @@ class MainController:
  
     tournaments = []
     players = []
-    #tournamentAlfa = Tournament('Ta','Paris','12/07/2023','12/07/2023', 'A', 'Director')
-    #tournaments.append(tournamentAlfa)
+    
     
     @classmethod
     def main_menu(cls):
@@ -96,7 +95,7 @@ class MainController:
                 cls.tournaments.append(new_tournament)
                 new_player = Player(len(cls.players) + 1,'charlie','dupond','12/07/1989','male')
                 cls.players.append(new_player)
-                print("creted")
+                print("created")
                
                 
             elif choice== 0 :
