@@ -7,6 +7,13 @@ class Player:
         self.date_of_birth = date_of_birth
         self.gender = gender
         
-    
+    def __str__(self):
+        
+       return (f"\n\nDETAILS OF PLAYERS: \nID =  {self.ID}, "\
+                f"first_name = {self.first_name}, "\
+                f"last_name = {self.last_name}, "\
+                f"date_of_birth = {self.date_of_birth}, "\
+                f"gender = {self.gender}, "\
+                )        
     
     

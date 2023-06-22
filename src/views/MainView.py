@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 
 class MainView:
     
@@ -10,16 +13,18 @@ class MainView:
         print('1: Create a tournament go view #2')
         print('2: Resume tournament go view #8')
         print('3: Create players go view #5' )
-        print('4: Create round')
-        print('5: Create match')
-        print('6: Reports go view #7')
-        print('7: Default')
+        print('4: get_player')
+        print('5: Create round')
+        print('6: Create match')
+        print('7: resume match')
+        print('8: Reports')
+        print('9: Default')
         print('0: Exit')
         print("\n__________________________________\n\n")
         
                 
         choice= -1
-        while(choice < 0 or choice > 7):
+        while(choice < 0 or choice > 9):
             choice = int(input("Enter option: "))
             
         
@@ -33,8 +38,6 @@ class MainView:
         input_location = input("Enter the town of tournament:  ")
         input_date_start = input("Enter the date of tournament start:  ")
         input_date_end = input("Enter the tournament end date: ")
-        #input_rounds = input("Enter the number of rounds: ")
-        input_time_control = input("Enter the time_control: ")
         input_description = input("Enter description of tournament: ")
         
       
@@ -43,41 +46,45 @@ class MainView:
             'name': inputTournament, 
             'location': input_location, 
             'date_start': input_date_start, 
-            'date_end': input_date_end,
-            #'number_rounds': input_rounds, 
-            'time_control': input_time_control, 
+            'date_end': input_date_end, 
             'description': input_description
             }
             
     def round_view():
+        date = datetime.now() #
         input_name_round = input("Enter the name of round: ")
         input_round_number = input("Enter the round number: ")
-        input_start_time = input("Enter the start time: ")
-        input_end_time = input("Enter the end time: ")
+        input_start_time = date.hour, "/", date.day, "/", date.month, "/", date.year
+        
                    
         return {
             'name': input_name_round, 
             'round_number': input_round_number, 
-            'start_time': input_start_time, 
-            'end_time': input_end_time
+            'start_time': input_start_time 
                 }
     
-    def match_view():
-        input_scorePlayer1 = input("Enter the score of player 1: ")
-        input_scorePlayer2 = input("Enter the score of player 2: ")
-        input_player1= input("Enter the name of player 1: ")
-        input_player2= input("Enter the name of player 2: ")
+    
+    @staticmethod
+    def resume_match_view():
+        input_ID = input("please enter the ID of the match you would finisch : ")
+        input_score_player1 = input("Please enter the score of player1 (0=lost, 1=winner, 0,5=stalemate):  ")
+        input_score_player2 = input("Please enter the score of player2 (0=lost, 1=winner, 0,5=stalemate):  ")
         
-        return {
-            'scorePlayer1': input_scorePlayer1,
-            'scorePlayer2' : input_scorePlayer2,
-            'player1': input_player1,
-            'player2': input_player2          
-                }
+        if input_score_player1== 1 :    
+            print('The winner is player1')
+                
+        elif input_score_player2 == 1 : 
+            print("The winner is player2")
+                
+        else: print("stalemate")
         
+        return input_score_player1,input_score_player2, input_ID
+
+    
+       
     @staticmethod
     def resume_tournament_view():
-        input_score = input("Please enter the score of the completed match:  ")
+        input_score = input("Please enter the score of the completed match :  ")
         
         return input_score   
     
@@ -95,18 +102,18 @@ class MainView:
             'gender': input_gender
             }
         
+    @classmethod
+    def get_player(self):
+        input_player_id = int(input("Insert the id of player: "))  
         
+        return input_player_id -1
         
     @staticmethod    
     def show_players_list(players_list):
     
         players_list=sorted(players_list, key=lambda x: x.first_name)
-        for p in players_list:
-            print("ID: ", p.ID)
-            print("Name: ",p.first_name)
-            print("Last Name: ",p.last_name)
-            print("Date Birth: ", p.date_of_birth)
-            print("Gender: ",p.gender)
+        for p in range(0, len(players_list)):
+            print(f" {players_list[p]}")
             
     
     
@@ -115,18 +122,9 @@ class MainView:
     def show_tournament_list(tournament_list):
         
         tournament_list =sorted(tournament_list, key=lambda x: x.name)
-        for t in tournament_list:
-            print("ID: ", t.ID)
-            print("Name: ",t.name)
-            print("Location: ",t.location)
-            print("Date Start: ",t.date_start)
-            print("Date End: ",t.date_end)
-            print("Number Rounds: ",t.number_rounds)
-            print("Time Control: ",t.time_control)
-            print("Description: ",t.description)
-            print("Players_ name: ",t.players [1].first_name)
-            print("Rounds_name: ",t.rounds [0].name)
-            print("Matches_score:",t.rounds [0].matches[0].scorePlayer1)
+        for t in range(0, len(tournament_list)):
+            print(f"{tournament_list[t]}")
+            
             
             
         

@@ -2,7 +2,7 @@ class Tournament():
     
     
 
-    def __init__(self, ID, name, location, date_start, date_end, time_control, description):
+    def __init__(self, ID, name, location, date_start, date_end, description):
         self.ID =ID
         self.name = name
         self.location = location
@@ -11,11 +11,22 @@ class Tournament():
         self.number_rounds = 4
         self.rounds = []
         self.players = []
-        self.time_control = time_control
         self.description = description
         
     def __str__(self):
-        return f"name =  {self.name},location = {self.date_start}, date_start = {self.date_start}, date_end = {self.date_end}, time_control = {self.time_control}, description = {self.description}"
+        player_str = "\n\n".join(str(player) for player in self.players)
+        round_str = "\n\n".join(str(round) for round in self.rounds)
+        
+        return  f" DETAILS OF TOURNAMENT:\n\nID = {self.ID}, " \
+                    f"name =  {self.name}, " \
+                    f"location = {self.date_start}, " \
+                    f"date_start = {self.date_start}, " \
+                    f"date_end = {self.date_end}, " \
+                    f"\n\nROUNDS OF TOURNAMENT:\n rounds = {round_str}, " \
+                    f"\n\nPLAYERS OF TOURNAMENT:\nplayers = {player_str}, " \
+                    f"description = {self.description}, "
+                    
+                
         
     def add_player(self,player):    
         self.players.append(player)
