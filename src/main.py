@@ -17,7 +17,7 @@ MainController.main_menu()
 #vendredi 15h30
 
 #questions 
-#Les matchs peuvent se joué au meme temps ou doit je commencer un match avant de demarrer le suivant 
+#Les matchs peuvent se jouer au meme temps ou doit je commencer un match avant de demarrer le suivant 
 
 
 

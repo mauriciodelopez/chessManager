@@ -60,6 +60,7 @@ class MainController:
                 for i in range (num_players):
                     id = MainView.get_player()
                     new_tournament.add_player(cls.players[id])
+                
 
                 
             elif choice == 5 :
@@ -67,19 +68,20 @@ class MainController:
                 new_round = Round(
                     round_data['name'],
                     round_data['round_number'],
-                    start_time = ["start_time"]
+                    round_data['start_time']
                                 )
                 new_tournament.add_round(new_round)
                 
             elif choice == 6 :
-                matche = new_round.get_match_pairing(new_tournament.players)
-                print('test', matche)
-                new_match=Matche(*matche)#nous ecrivons l'étoile afin de pouvoir unpacking of the tuple
+                matche = new_round.get_match_pairing(new_tournament.players,len(new_round.matches))
+                new_match=Matche(len(new_round.matches) + 1, *matche)#nous ecrivons l'étoile afin de pouvoir unpacking of the tuple
                 new_round.add_matche(new_match) 
+                print('Match created')
+
                 
             elif choice == 7 :
                 
-                score_player1, score_player2, index = MainView.resume_match_view()
+                score_player1, score_player2, index= MainView.resume_match_view(new_round.matches)
                 for i in range(0, len(new_round.matches)):
                     
                     if i == index : 
@@ -87,37 +89,36 @@ class MainController:
                         new_round.matches[i].scorePlayer1 += score_player1 #+= for cumulate in order additioned to the last result
                         new_round.matches[i].scorePlayer2 += score_player2
                 
+            elif choice == 8 :
+                date=MainView.resume_round_view()
+                new_round.end_time=date
                 
+            elif choice == 9 :             
                 
-            elif choice == 8 :             
-                print("\n-----Tournaments----\n")
-                
+                print("TOURNAMENT\n")
                 MainView.show_tournament_list(cls.tournaments)
                 
-                print("\n-----Players----\n")
-
-                MainView.show_players_list(new_tournament.players)
-
-
+                print("\nPlAYERS OF TOURNAMENT\n")
+                MainView.show_players_list(cls.players)
 
 
                 
-            elif choice == 9 :
+            elif choice == 10 :
                 new_tournament = Tournament(len(cls.tournaments) + 1,'Ta','Paris','12/07/2023','12/07/2023', 'Director')
                 cls.tournaments.append(new_tournament)
-                new_player1 = Player(len(cls.players) + 1,'carlie1','dupond1','12/07/1989','male')
+                new_player1 = Player(len(cls.players) + 1,'charlie1','dupond1','12/07/1989','male')
                 cls.players.append(new_player1)
                 new_player2 = Player(len(cls.players) + 1,'charlie2','dupond2','12/07/1989','male')
                 cls.players.append(new_player2)
                 new_player3 = Player(len(cls.players) + 1,'charlie3','dupond3','12/07/1989','male')
                 cls.players.append(new_player3)
-                new_player4 = Player(len(cls.players) + 1,'carlie4','dupond4','12/07/1989','male')
+                new_player4 = Player(len(cls.players) + 1,'charlie4','dupond4','12/07/1989','male')
                 cls.players.append(new_player4)
                 new_player5 = Player(len(cls.players) + 1,'charlie5','dupond5','12/07/1989','male')
                 cls.players.append(new_player5)
                 new_player6 = Player(len(cls.players) + 1,'charlie6','dupond6','12/07/1989','male')
                 cls.players.append(new_player6)
-                print("created")
+                print("Tournament and Players created")
                
                 
             elif choice== 0 :
