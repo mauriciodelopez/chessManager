@@ -2,6 +2,8 @@
 
 import random
 
+from itertools import cycle
+
 class Round:
     def __init__(self, name, round_number, start_time="",end_time=""):
         self.name = name
@@ -21,25 +23,36 @@ class Round:
     def add_matche(self, matche):
         self.matches.append(matche)
         
-    def get_match_pairing(self,list_of_players,idx):
-      
-        score=0
-        tuple_players = []
-        
-        if(idx==0):
-            random.shuffle(list_of_players)
-        else:
-             idx+=1
-        #from 0 to len logitude of all list of players ,2 its a intervalle to 2 in 2 for exemple
-        #for i in range(0, len(list_of_players),2):
-        player1 = list_of_players[idx]
-        player2 = list_of_players[idx+1]
-        match = (score,score,player1,player2)
-        tuple_players.append(match)
-        return match
+
+    def get_match_pairing(self, round_players, idx_match):
+        lista = list(round_players.items())
+        lista = sorted(lista, key=lambda x: x[1], reverse=True)
+        print(lista)
+
+        if idx_match == 0:
+            random.shuffle(lista)
+
+        match_list = []
+
+        player_count = len(lista)
+        mid = player_count // 2
+
+        for i in range(mid):
+            player1, score1 = lista[i]
+            player2, score2 = lista[player_count - i - 1]
+
+            match = (score1, score2, player1, player2)
+            match_list.append(match)
+
+        print(match_list)
+        return match_list
+       
             
         #crear un ciclo for con 4 partidos y en el maincontroller se 
             
+        
+        
+        
         
         
         

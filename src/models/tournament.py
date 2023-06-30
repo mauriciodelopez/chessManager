@@ -32,10 +32,11 @@ class Tournament():
     def add_round(self,round):
         self.rounds.append(round)
                
-    def return_players(self):
-        return self.players
+    #def return_players(self):
+        #return self.players
     
         
         
+           
    
         

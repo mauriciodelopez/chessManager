@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 
 
@@ -11,15 +12,12 @@ class MainView:
         print("__________________________________\n")
         print('Please select a action:\n')
         print('1: Create a tournament')
-        print('2: Resume tournament')
-        print('3: Create players' ) # 1 crear player 
-        print('4: Get_player to tournament') # 2 selected player 
-        print('5: Create round') 
-        print('6: Create match')
-        print('7: Resume match') # 
-        print('8: Resume round') #
-        print('9: Reports')
-        print('10: Default')
+        print('2: Create players' ) # 1 crear player 
+        print('3: Get_player to tournament') # 2 selected player 
+        print('4: Reports')
+        print('5: Default')
+        print('6: Resume tournament')
+        print('7: Generate JSON file')
         print('0: Exit')
         print("\n__________________________________\n\n")
         
@@ -67,19 +65,17 @@ class MainView:
     
     @staticmethod
     def resume_match_view(match_list):
-        for i in range(0, len(match_list)):
-            print(f" {match_list[i]}")
-        input_ID = int(input("insert the id of the match you want to end: "))-1
-        input_score = float(input("Please enter the score of player1 (0=lost, 1=winner, 0.5=stalemate):  "))
+        
+        input_score = float(input("Please enter the score of player1 (0=lost, 1=winner, 0.5=stalemate) of match #  "))
         
         input_score_player1=input_score
 
-        if input_score_player1== 1 :  
-            input_score_player2=0  
+        if input_score_player1== 1.0 :  
+            input_score_player2=0.0  
             print('The winner is player1')
                 
-        elif input_score_player1 == 0 : 
-            input_score_player2=1
+        elif input_score_player1 == 0.0 : 
+            input_score_player2=1.0
             print("The winner is player2")
                 
         elif input_score_player1 == 0.5: 
@@ -89,7 +85,7 @@ class MainView:
             print("ERROR!")
         
         print("Match ended")
-        return input_score_player1,input_score_player2, input_ID
+        return input_score_player1,input_score_player2,
 
        
     @staticmethod
@@ -100,9 +96,9 @@ class MainView:
     @staticmethod
     def resume_round_view():
         date=datetime.now()
-        resp = input("Are you sure do you want to finish the round?: y/n ")
+        resp = input("To end the round, insert 'y'")
         if resp=='y':
-            print("round ended")
+            print("Round ended")
             return str(date.strftime('%H:%M:%S,%d/%m/%Y'))   
     
     @classmethod
@@ -143,6 +139,28 @@ class MainView:
             print(f"{tournament_list[t]}")
             
             
+    def generateJson(tournament_list):
+        
+        for t in range(0, len(tournament_list)):
+            tournaments_data=[]
+            tournament_dict = {
+            'id': tournament_list[t].ID,
+            'name': tournament_list[t].name,
+            'location': tournament_list[t].location,
+            'number_rounds': tournament_list[t].number_rounds,
+            # Agrega más campos según la estructura de tu objeto Tournament
+            }
+            # Agrega el diccionario a la lista de datos de torneos
+            tournaments_data.append(tournament_dict)
+
+            # Abre un archivo en modo escritura
+            with open("tournament.json", 'w') as file:
+                # Escribe la lista de datos de torneos en formato JSON
+                json.dump(tournaments_data, file)        
+        
+            
+    
+
             
         
             

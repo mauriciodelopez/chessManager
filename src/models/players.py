@@ -1,3 +1,4 @@
+import random
 
 class Player:
     def __init__(self, ID, first_name, last_name, date_of_birth, gender):
@@ -6,6 +7,7 @@ class Player:
         self.last_name = last_name
         self.date_of_birth = date_of_birth
         self.gender = gender
+        
         
     def __str__(self):
         
@@ -16,4 +18,4 @@ class Player:
                 f"gender = {self.gender}, "\
                 )        
     
-    
+     

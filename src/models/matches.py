@@ -13,8 +13,10 @@ class Matche():
             return  f"\n match # ID = {self.ID},"\
                     f"scorePlayer1 = {self.scorePlayer1}, " \
                     f"scorePlayer2 = {self.scorePlayer2}, " \
-                    f"{self.player1}, " \
-                    f"{self.player2}, " \
+                    f"ID player 1 = {self.player1}, " \
+                    f"ID player 1 = {self.player2}, " \
                         
     
+    
+ 
     

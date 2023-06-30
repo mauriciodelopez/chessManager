@@ -1,4 +1,3 @@
-from controllers.TournamentController import TournamentController
 from controllers.mainController import MainController
 
 
@@ -17,7 +16,11 @@ MainController.main_menu()
 #vendredi 15h30
 
 #questions 
-#Les matchs peuvent se jouer au meme temps ou doit je commencer un match avant de demarrer le suivant 
+#Les matchs peuvent se jouer au meme temps ou doit je commencer un match avant de demarrer le suivant, OK
+
+#Comment organiser les tournois, devons jouer les tournois au meme temps, ou joué un tournoi puis l'autre 
+#Comment faire le classement lorsque plusieurs jouers ont le meme score final 
+#Comment faire le blanc et noire 
 
 
 
