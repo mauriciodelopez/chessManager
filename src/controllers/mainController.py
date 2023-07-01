@@ -43,6 +43,7 @@ class MainController:
                 player_data = MainView.newplayer_view()
                 new_player = Player(
                     len(cls.players) + 1,
+                    player_data['national_ID'],
                     player_data['first_name'],
                     player_data['last_name'],
                     player_data['date_of_birth'],
@@ -76,12 +77,12 @@ class MainController:
                     #create match into round    
                     for j in range(new_tournament.number_rounds):
                         score1, score2, player1, player2 = matche[j] 
-                        new_match=Matche(len(new_round.matches) + 1, score1, score2, player1, player2 )#nous ecrivons l'étoile afin de pouvoir unpacking of the tuple
+                        new_match=Matche(len(new_round.matches) + 1, score1, score2, player1, player2 )
                         new_round.add_matche(new_match) 
                         print('Match created')
                     #add score of match    
                     for m in range(0, len(new_round.matches)):
-                        score_player1, score_player2= MainView.resume_match_view(new_round.matches)
+                        score_player1, score_player2= MainView.resume_match_view(new_round.matches,new_tournament.players)
                         new_round.matches[m].scorePlayer1 += score_player1 #+= for cumulate in order additioned to the last result
                         new_round.matches[m].scorePlayer2 += score_player2
                         cls.round_players[new_round.matches[m].player1]= new_round.matches[m].scorePlayer1
@@ -105,21 +106,21 @@ class MainController:
             elif choice == 5 :
                 new_tournament = Tournament(len(cls.tournaments) + 1,'Ta','Paris','12/07/2023','12/07/2023', 'Director')
                 cls.tournaments.append(new_tournament)
-                new_player1 = Player(len(cls.players) + 1,'charlie1','dupond1','12/07/1989','male')
+                new_player1 = Player(len(cls.players) + 1, 'AB12345','charlie1','dupond1','12/07/1989','male')
                 cls.players.append(new_player1)
-                new_player2 = Player(len(cls.players) + 1,'charlie2','dupond2','12/07/1989','male')
+                new_player2 = Player(len(cls.players) + 1,'AB12346','charlie2','dupond2','12/07/1989','male')
                 cls.players.append(new_player2)
-                new_player3 = Player(len(cls.players) + 1,'charlie3','dupond3','12/07/1989','male')
+                new_player3 = Player(len(cls.players) + 1,'AB12347','charlie3','dupond3','12/07/1989','male')
                 cls.players.append(new_player3)
-                new_player4 = Player(len(cls.players) + 1,'charlie4','dupond4','12/07/1989','male')
+                new_player4 = Player(len(cls.players) + 1,'AB12348','charlie4','dupond4','12/07/1989','male')
                 cls.players.append(new_player4)
-                new_player5 = Player(len(cls.players) + 1,'charlie5','dupond5','12/07/1989','male')
+                new_player5 = Player(len(cls.players) + 1,'AB12349','charlie5','dupond5','12/07/1989','male')
                 cls.players.append(new_player5)
-                new_player6 = Player(len(cls.players) + 1,'charlie6','dupond6','12/07/1989','male')
+                new_player6 = Player(len(cls.players) + 1,'AB12310','charlie6','dupond6','12/07/1989','male')
                 cls.players.append(new_player6)
-                new_player7 = Player(len(cls.players) + 1,'charlie7','dupond7','12/07/1989','male')
+                new_player7 = Player(len(cls.players) + 1,'AB12311','charlie7','dupond7','12/07/1989','male')
                 cls.players.append(new_player7)
-                new_player8 = Player(len(cls.players) + 1,'charlie8','dupond8','12/07/1989','male')
+                new_player8 = Player(len(cls.players) + 1,'AB12312','charlie8','dupond8','12/07/1989','male')
                 cls.players.append(new_player8)
                 print("Tournament and Players created")
                
@@ -132,7 +133,7 @@ class MainController:
                 print("the winner of tournament is player =", new_tournament.players[max_key].first_name)
             
             elif choice == 7:
-                MainView.generateJson(cls.tournaments)
+                MainView.generateJson(cls.tournaments,new_tournament.players)
                 print("file generated")
                 
             elif choice== 0 :

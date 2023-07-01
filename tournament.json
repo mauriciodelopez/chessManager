@@ -1,1 +1,1 @@
-[{"id": 1, "name": "Ta", "location": "Paris", "number_rounds": 4}]
+[{"id": 1, "name": "Ta", "location": "Paris", "number_rounds": 4, "description": "Director", "list of players": [{"ID": 8, "first_name": "charlie8", "last_name": "dupond8", "date_of_birth": "12/07/1989", "gender": "male"}]}]

@@ -27,7 +27,7 @@ class Round:
     def get_match_pairing(self, round_players, idx_match):
         lista = list(round_players.items())
         lista = sorted(lista, key=lambda x: x[1], reverse=True)
-        print(lista)
+        #print(lista)
 
         if idx_match == 0:
             random.shuffle(lista)
@@ -44,7 +44,7 @@ class Round:
             match = (score1, score2, player1, player2)
             match_list.append(match)
 
-        print(match_list)
+        #print(match_list)
         return match_list
        
             

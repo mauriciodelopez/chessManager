@@ -7,6 +7,9 @@ class Matche():
         self.scorePlayer2 = scorePlayer2
         self.player1 = player1
         self.player2 = player2
+        self.color_player1 = "white"
+        self.color_player2 = "black"
+        
     
     def __str__(self):
 
@@ -15,6 +18,8 @@ class Matche():
                     f"scorePlayer2 = {self.scorePlayer2}, " \
                     f"ID player 1 = {self.player1}, " \
                     f"ID player 1 = {self.player2}, " \
+                    f"color_player1 = {self.color_player1}," \
+                    f"color_player2 = {self.color_player2}, " \
                         
     
     

@@ -19,8 +19,13 @@ MainController.main_menu()
 #Les matchs peuvent se jouer au meme temps ou doit je commencer un match avant de demarrer le suivant, OK
 
 #Comment organiser les tournois, devons jouer les tournois au meme temps, ou joué un tournoi puis l'autre 
-#Comment faire le classement lorsque plusieurs jouers ont le meme score final 
+#Comment faire le classement lorsque plusieurs jouers ont le meme score final OK
 #Comment faire le blanc et noire 
 
+
+#json avec tous les scores tous les jouerus, 
+#nom du jouer a la place de player 1 et player 2 pour savoir qui gagne 
+#au debut du paire blanc et noir 
+#identifiant national d'echecs
 
 

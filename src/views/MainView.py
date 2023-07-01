@@ -64,19 +64,23 @@ class MainView:
     
     
     @staticmethod
-    def resume_match_view(match_list):
-        
-        input_score = float(input("Please enter the score of player1 (0=lost, 1=winner, 0.5=stalemate) of match #  "))
+    def resume_match_view(match_list, players_list):
+        idx = len(match_list)-1
+        id_player = match_list[idx].player1
+        id_player2 = match_list[idx].player2
+        message = f"Please enter the score of {players_list[id_player].first_name}"
+        print(match_list[idx])
+        input_score = float(input(message + " (0=lost, 1=winner, 0.5=stalemate) of match #  "))
         
         input_score_player1=input_score
 
         if input_score_player1== 1.0 :  
             input_score_player2=0.0  
-            print('The winner is player1')
+            print('The winner is player1 ',players_list[id_player].first_name)
                 
         elif input_score_player1 == 0.0 : 
             input_score_player2=1.0
-            print("The winner is player2")
+            print("The winner is player2 ",players_list[id_player2].first_name)
                 
         elif input_score_player1 == 0.5: 
             input_score_player2=0.5
@@ -102,13 +106,16 @@ class MainView:
             return str(date.strftime('%H:%M:%S,%d/%m/%Y'))   
     
     @classmethod
+    
     def newplayer_view(cls):
+        input_national_ID = input("Please enter your national ID: ")
         input_first_name = input("Insert first_name: ")
         input_last_name = input("Insert the last name of player:  ")
         input_date_of_birth = input("Insert the date_of_birth: ")
         input_gender = input("Insert gender of player: ")
         
         return {
+            'national_ID': input_national_ID,
             'first_name': input_first_name, 
             'last_name': input_last_name, 
             'date_of_birth': input_date_of_birth, 
@@ -139,15 +146,33 @@ class MainView:
             print(f"{tournament_list[t]}")
             
             
-    def generateJson(tournament_list):
+    def generateJson(tournament_list, players_list):
+        players_data=[]
+        tournaments_data=[]
+        for p in range(0, len(players_list)):
+            
+            players_dict={
+            "ID": players_list[p].ID,
+            "first_name": players_list[p].first_name,
+            "last_name": players_list[p].last_name, 
+            "date_of_birth": players_list[p]. date_of_birth,
+            "gender": players_list[p].gender
+            }
+            players_data.append(players_dict)
+            
+        
         
         for t in range(0, len(tournament_list)):
-            tournaments_data=[]
+            
             tournament_dict = {
             'id': tournament_list[t].ID,
             'name': tournament_list[t].name,
             'location': tournament_list[t].location,
             'number_rounds': tournament_list[t].number_rounds,
+            'description' : tournament_list[t].description,
+            'list of players': players_data,
+            
+            
             # Agrega más campos según la estructura de tu objeto Tournament
             }
             # Agrega el diccionario a la lista de datos de torneos
