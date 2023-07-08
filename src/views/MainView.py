@@ -64,12 +64,12 @@ class MainView:
     
     
     @staticmethod
-    def resume_match_view(match_list, players_list):
-        idx = len(match_list)-1
-        id_player = match_list[idx].player1
-        id_player2 = match_list[idx].player2
+    def resume_match_view(match, players_list):
+        id_player = match.player1-1
+        id_player2 = match.player2-1
+        print("\nMatch",match)
+
         message = f"Please enter the score of {players_list[id_player].first_name}"
-        print(match_list[idx])
         input_score = float(input(message + " (0=lost, 1=winner, 0.5=stalemate) of match #  "))
         
         input_score_player1=input_score
@@ -88,19 +88,15 @@ class MainView:
         else:
             print("ERROR!")
         
-        print("Match ended")
+        print("\nMatch ended")
         return input_score_player1,input_score_player2,
 
        
-    @staticmethod
-    def resume_tournament_view():
-        input_score = input("Please enter the score of the completed match :  ")
-        print("tournament ended")
-        return input_score   
+   
     @staticmethod
     def resume_round_view():
         date=datetime.now()
-        resp = input("To end the round, insert 'y'")
+        resp = input("To end the round, insert 'y': ")
         if resp=='y':
             print("Round ended")
             return str(date.strftime('%H:%M:%S,%d/%m/%Y'))   
@@ -128,10 +124,10 @@ class MainView:
         print("Player added to the tournament\n ")
         return input_player_id -1
         
-    @staticmethod    
+    @staticmethod  #metodo que no requiere de una instancia de la clase para ser llamado  
     def show_players_list(players_list):
     
-        players_list=sorted(players_list, key=lambda x: x.first_name)
+        players_list=sorted(players_list, key=lambda x: x.first_name)# para ordenar por orden alphabetico del nombre
         for p in range(0, len(players_list)):
             print(f" {players_list[p]}")
             
@@ -146,12 +142,16 @@ class MainView:
             print(f"{tournament_list[t]}")
             
             
-    def generateJson(tournament_list, players_list):
+    def generateJson(tournament_list, players_list,rounds_list, match_list,winner):
         players_data=[]
         tournaments_data=[]
+        rounds_data=[]
+        match_data=[]
+
         for p in range(0, len(players_list)):
             
             players_dict={
+            "Players :"+
             "ID": players_list[p].ID,
             "first_name": players_list[p].first_name,
             "last_name": players_list[p].last_name, 
@@ -159,35 +159,48 @@ class MainView:
             "gender": players_list[p].gender
             }
             players_data.append(players_dict)
+
+        for m in range(0, len(match_list)):
             
+            match_dict={
+            "ID": match_list[m].ID,
+            "scorePlayer1": match_list[m].scorePlayer1,
+            "scorePlayer2": match_list[m].scorePlayer2, 
+            "player1": match_list[m]. player1,
+            "player2": match_list[m].player2,
+            "color_player1": match_list[m].color_player1,
+            "color_player2": match_list[m].color_player2
+            }
+            match_data.append(match_dict)
         
+        for r in range(0, len(rounds_list)):
+            rounds_dict={
+            "name": rounds_list[r].name,
+            "round_number": rounds_list[r].round_number,
+            "start_time": rounds_list[r].start_time, 
+            "end_time": rounds_list[r]. end_time,
+            "matches": match_data
+            }
+            rounds_data.append(rounds_dict)
+
         
         for t in range(0, len(tournament_list)):
             
             tournament_dict = {
-            'id': tournament_list[t].ID,
+            "Tournament : " + 'id': tournament_list[t].ID,
             'name': tournament_list[t].name,
             'location': tournament_list[t].location,
             'number_rounds': tournament_list[t].number_rounds,
-            'description' : tournament_list[t].description,
+            'description': tournament_list[t].description,
             'list of players': players_data,
-            
-            
-            # Agrega más campos según la estructura de tu objeto Tournament
-            }
+            'list of rounds': rounds_data,
+            'The winner is': winner
+        }
+
             # Agrega el diccionario a la lista de datos de torneos
             tournaments_data.append(tournament_dict)
 
             # Abre un archivo en modo escritura
             with open("tournament.json", 'w') as file:
                 # Escribe la lista de datos de torneos en formato JSON
-                json.dump(tournaments_data, file)        
-        
-            
-    
-
-            
-        
-            
-    
-
+                json.dump(tournaments_data, file,indent=4)     

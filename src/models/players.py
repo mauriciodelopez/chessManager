@@ -13,11 +13,10 @@ class Player:
     def __str__(self):
         
        return (f"\nplayer#{self.ID} "\
-                f"\n national_ID = {self.national_ID}"\
+                f"\n national_ID = {self.national_ID}, "\
                 f"first_name = {self.first_name}, "\
                 f"last_name = {self.last_name}, "\
                 f"date_of_birth = {self.date_of_birth}, "\
                 f"gender = {self.gender}, "\
                 )        
     
-     

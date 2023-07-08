@@ -34,9 +34,3 @@ class Tournament():
                
     #def return_players(self):
         #return self.players
-    
-        
-        
-           
-   
-        

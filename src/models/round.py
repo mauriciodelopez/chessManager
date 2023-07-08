@@ -29,22 +29,23 @@ class Round:
         lista = sorted(lista, key=lambda x: x[1], reverse=True)
         #print(lista)
 
-        if idx_match == 0:
+        if idx_match ==1:
             random.shuffle(lista)
 
         match_list = []
-
-        player_count = len(lista)
-        mid = player_count // 2
-
-        for i in range(mid):
-            player1, score1 = lista[i]
-            player2, score2 = lista[player_count - i - 1]
-
+        player_list = cycle(lista)
+        
+        while len(match_list) < len(lista) // 2:
+            player1, score1 = next(player_list)
+            player2, score2 = next(player_list)
+            
             match = (score1, score2, player1, player2)
             match_list.append(match)
+        
+        match_list = sorted(match_list, key=lambda x: x[0], reverse=True)  # Ordenar los emparejamientos por puntaje descendente
+        
 
-        #print(match_list)
+        
         return match_list
        
             
@@ -55,8 +56,3 @@ class Round:
         
         
         
-        
-        
-
-
-

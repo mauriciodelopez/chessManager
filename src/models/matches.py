@@ -1,5 +1,3 @@
-
-
 class Matche():
     def __init__(self, ID, scorePlayer1, scorePlayer2, player1, player2):
         self.ID = ID
@@ -17,11 +15,9 @@ class Matche():
                     f"scorePlayer1 = {self.scorePlayer1}, " \
                     f"scorePlayer2 = {self.scorePlayer2}, " \
                     f"ID player 1 = {self.player1}, " \
-                    f"ID player 1 = {self.player2}, " \
+                    f"ID player 2 = {self.player2}, " \
                     f"color_player1 = {self.color_player1}," \
                     f"color_player2 = {self.color_player2}, " \
                         
     
-    
- 
     

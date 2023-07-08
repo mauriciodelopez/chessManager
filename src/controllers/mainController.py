@@ -11,7 +11,7 @@ class MainController:
     tournaments = []
     players = []
     round_players={} #for put player plus score
-    
+    winner = " "
     
     
     @classmethod
@@ -22,9 +22,10 @@ class MainController:
 
             #creation of new tournament
             if choice == 1 :
-                tournament_data = MainView.tournament_view()
+                tournament_data = MainView.tournament_view() #return avec les reponses de l'user
+                #creation de l'instance de l'objet tournoi 
                 new_tournament = Tournament(
-                    len(cls.tournaments) + 1,
+                    len(cls.tournaments) + 1, #id qu'augmente genere automatiqueme et se rajoute un a chaque foix
                     tournament_data['name'],
                     tournament_data['location'],
                     tournament_data['date_start'],
@@ -32,7 +33,7 @@ class MainController:
                     tournament_data['description'])
     
                 
-                cls.tournaments.append(new_tournament)
+                cls.tournaments.append(new_tournament) #agregation du tournoi a la liste
                 
             
                 
@@ -58,31 +59,32 @@ class MainController:
                 
                 print("Players: ",MainView.show_players_list(cls.players))
                 print("\nPlease, insert  8 players: ")
-                for k in range (new_tournament.number_rounds*2):
-                    id = MainView.get_player()
-                    new_tournament.add_player(cls.players[id])
-                    cls.round_players={player.ID: 0 for player in new_tournament.players}
+                for k in range (8): # 8 players 
+                    id = MainView.get_player() #los metodos llevan parentesis
+                    new_tournament.add_player(cls.players[id])#busca con el id el jugador, el va a buscar y agregar a la lista de jugadores el ID escrito
+                    cls.round_players={player.ID: 0 for player in new_tournament.players}#dictionnaire clave dos puntos ID, y un ciclo for para que lo haga con todos los Id de todos los jugadores
 
                 #create & start round & generate pairing players, create match & start match
-                for i in range(new_tournament.number_rounds):
-                    round_data = MainView.round_view()
+                for i in range(new_tournament.number_rounds): # 4 rondas que se crean
+                    round_data = MainView.round_view() #trae la informacion de la vista 
+                    #creation instancia de l'objet round
                     new_round = Round(
                         round_data['name'],
                         round_data['round_number'],
                         round_data['start_time']
                                     )
-                    new_tournament.add_round(new_round)
-                    matche = new_round.get_match_pairing(cls.round_players,len(new_round.matches))
-                    
-                    #create match into round    
-                    for j in range(new_tournament.number_rounds):
+                    new_tournament.add_round(new_round)# agrega la ronda a la lista
+                    matche = new_round.get_match_pairing(cls.round_players,len(new_tournament.rounds))
+                    print('Match created: ',matche)
+                    #create match into round  y se repite 4 veces donc 4 partidos y sale del for  
+                    for j in range(new_tournament.number_rounds):# entro en el primer partido del primer round y se repite 4 veces  
                         score1, score2, player1, player2 = matche[j] 
-                        new_match=Matche(len(new_round.matches) + 1, score1, score2, player1, player2 )
-                        new_round.add_matche(new_match) 
-                        print('Match created')
-                    #add score of match    
+                        new_match=Matche(len(new_round.matches) + 1, score1, score2, player1, player2 )#instancia de l'objet matches
+                        new_round.add_matche(new_match) #agrego a la lista new matche
+                        
+                    #add score of match   Agregar score al player y se repite 4 veces y vuelve a la linea 68 a crear la segunda ronda, linea 68 a 92 se repite hasta terminar el torneo
                     for m in range(0, len(new_round.matches)):
-                        score_player1, score_player2= MainView.resume_match_view(new_round.matches,new_tournament.players)
+                        score_player1, score_player2= MainView.resume_match_view(new_round.matches[m],new_tournament.players)
                         new_round.matches[m].scorePlayer1 += score_player1 #+= for cumulate in order additioned to the last result
                         new_round.matches[m].scorePlayer2 += score_player2
                         cls.round_players[new_round.matches[m].player1]= new_round.matches[m].scorePlayer1
@@ -130,10 +132,11 @@ class MainController:
                 #print('Final score', resume_data)
                 print("End of Tournament", new_tournament.ID)
                 max_key = max(cls.round_players, key=cls.round_players.get)#max method reserved to find the maximum number
-                print("the winner of tournament is player =", new_tournament.players[max_key].first_name)
+                MainController.winner=new_tournament.players[max_key-1].first_name
+                print("the winner of tournament is player =", MainController.winner)
             
             elif choice == 7:
-                MainView.generateJson(cls.tournaments,new_tournament.players)
+                MainView.generateJson(cls.tournaments,new_tournament.players,new_tournament.rounds,new_round.matches,MainController.winner)
                 print("file generated")
                 
             elif choice== 0 :
