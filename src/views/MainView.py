@@ -2,18 +2,17 @@ from datetime import datetime
 import json
 
 
-
 class MainView:
-    
+
     @classmethod   
-    def showMenu(cls):
+    def showMenu (cls) :
         print("\n__________________________________")
         print("             WELCOME")
         print("__________________________________\n")
         print('Please select a action:\n')
         print('1: Create a tournament')
-        print('2: Create players' ) # 1 crear player 
-        print('3: Get_player to tournament') # 2 selected player 
+        print('2: Create players')
+        print('3: Get_player to tournament')
         print('4: Reports')
         print('5: Default')
         print('6: Resume tournament')
@@ -21,7 +20,7 @@ class MainView:
         print('0: Exit')
         print("\n__________________________________\n\n")
         
-                
+
         choice= -1
         while(choice < 0 or choice > 10):
             choice = int(input("Enter option: "))
@@ -65,7 +64,7 @@ class MainView:
     
     @staticmethod
     def resume_match_view(match, players_list):
-        id_player = match.player1-1
+        id_player = match.player1-1 #
         id_player2 = match.player2-1
         print("\nMatch",match)
 
@@ -118,8 +117,8 @@ class MainView:
             'gender': input_gender
             }
         
-    @classmethod
-    def get_player(self):
+
+    def get_player():
         input_player_id = int(input("Insert the id of player: "))  
         print("Player added to the tournament\n ")
         return input_player_id -1
@@ -187,20 +186,20 @@ class MainView:
         for t in range(0, len(tournament_list)):
             
             tournament_dict = {
-            "Tournament : " + 'id': tournament_list[t].ID,
-            'name': tournament_list[t].name,
-            'location': tournament_list[t].location,
-            'number_rounds': tournament_list[t].number_rounds,
-            'description': tournament_list[t].description,
-            'list of players': players_data,
-            'list of rounds': rounds_data,
-            'The winner is': winner
-        }
+                "Tournament : " + 'id': tournament_list[t].ID,
+                'name': tournament_list[t].name,
+                'location': tournament_list[t].location,
+                'number_rounds': tournament_list[t].number_rounds,
+                'description': tournament_list[t].description,
+                'list of players': players_data,
+                'list of rounds': rounds_data,
+                'The winner is': winner
+                                 }
 
-            # Agrega el diccionario a la lista de datos de torneos
+            # Add the dictionnay to the data list of tournaments
             tournaments_data.append(tournament_dict)
 
-            # Abre un archivo en modo escritura
+            # Open a file in a write mode   
             with open("tournament.json", 'w') as file:
-                # Escribe la lista de datos de torneos en formato JSON
-                json.dump(tournaments_data, file,indent=4)     
+                # Write the data list of tournaments in JSON format
+                json.dump(tournaments_data, file, indent=4)     

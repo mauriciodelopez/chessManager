@@ -7,17 +7,14 @@ class Matche():
         self.player2 = player2
         self.color_player1 = "white"
         self.color_player2 = "black"
-        
-    
+
     def __str__(self):
 
-            return  f"\n match # ID = {self.ID},"\
-                    f"scorePlayer1 = {self.scorePlayer1}, " \
-                    f"scorePlayer2 = {self.scorePlayer2}, " \
-                    f"ID player 1 = {self.player1}, " \
-                    f"ID player 2 = {self.player2}, " \
-                    f"color_player1 = {self.color_player1}," \
-                    f"color_player2 = {self.color_player2}, " \
-                        
-    
-    
+        return f"\n match # ID = {self.ID}," \
+                f"scorePlayer1 = {self.scorePlayer1}, " \
+                f"scorePlayer2 = {self.scorePlayer2}, " \
+                f"ID player 1 = {self.player1}, " \
+                f"ID player 2 = {self.player2}, " \
+                f"color_player1 = {self.color_player1}," \
+                f"color_player2 = {self.color_player2}, " \
+                

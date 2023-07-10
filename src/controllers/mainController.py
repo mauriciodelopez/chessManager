@@ -1,16 +1,15 @@
 from views.MainView import MainView
 from models.tournament import Tournament
 from models.players import Player
-from models.round   import Round
+from models.round import Round
 from models.matches import Matche
 
 
-
 class MainController:
- 
+
     tournaments = []
     players = []
-    round_players={} #for put player plus score
+    round_players = {}   #for put player plus score
     winner = " "
     
     
@@ -132,13 +131,12 @@ class MainController:
                 #print('Final score', resume_data)
                 print("End of Tournament", new_tournament.ID)
                 max_key = max(cls.round_players, key=cls.round_players.get)#max method reserved to find the maximum number
-                MainController.winner=new_tournament.players[max_key-1].first_name
+                MainController.winner = new_tournament.players[max_key-1].first_name
                 print("the winner of tournament is player =", MainController.winner)
             
             elif choice == 7:
-                MainView.generateJson(cls.tournaments,new_tournament.players,new_tournament.rounds,new_round.matches,MainController.winner)
+                MainView.generateJson(cls.tournaments, new_tournament.players, new_tournament.rounds, new_round.matches, MainController.winner)
                 print("file generated")
-                
-            elif choice== 0 :
+
+            elif choice == 0 :
                 print("Exit...")
-           
