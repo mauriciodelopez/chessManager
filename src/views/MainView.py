@@ -141,56 +141,57 @@ class MainView:
             print(f"{tournament_list[t]}")
             
             
-    def generateJson(tournament_list, players_list,rounds_list, match_list,winner):
-        players_data=[]
+    def generateJson(tournament_list,winner):
+        
         tournaments_data=[]
-        rounds_data=[]
-        match_data=[]
 
-        for p in range(0, len(players_list)):
-            
-            players_dict={
-            "Players :"+
-            "ID": players_list[p].ID,
-            "first_name": players_list[p].first_name,
-            "last_name": players_list[p].last_name, 
-            "date_of_birth": players_list[p]. date_of_birth,
-            "gender": players_list[p].gender
-            }
-            players_data.append(players_dict)
+        for tournament in tournament_list:
+            rounds_data=[]
+            match_data=[]
+            players_data=[]
 
-        for m in range(0, len(match_list)):
+            for player in tournament.players:
             
-            match_dict={
-            "ID": match_list[m].ID,
-            "scorePlayer1": match_list[m].scorePlayer1,
-            "scorePlayer2": match_list[m].scorePlayer2, 
-            "player1": match_list[m]. player1,
-            "player2": match_list[m].player2,
-            "color_player1": match_list[m].color_player1,
-            "color_player2": match_list[m].color_player2
-            }
-            match_data.append(match_dict)
-        
-        for r in range(0, len(rounds_list)):
-            rounds_dict={
-            "name": rounds_list[r].name,
-            "round_number": rounds_list[r].round_number,
-            "start_time": rounds_list[r].start_time, 
-            "end_time": rounds_list[r]. end_time,
-            "matches": match_data
-            }
-            rounds_data.append(rounds_dict)
+                players_dict={
+                "Players :"+
+                "ID": player.ID,
+                "first_name":player.first_name,
+                "last_name": player.last_name, 
+                "date_of_birth": player. date_of_birth,
+                "gender": player.gender
+                }
+                players_data.append(players_dict)
 
-        
-        for t in range(0, len(tournament_list)):
+            for round_ in tournament.rounds:
+                matches_data=[]
+                for match in round_.matches:
             
+                    match_dict={
+                    "ID": match.ID,
+                    "scorePlayer1": match.scorePlayer1,
+                    "scorePlayer2": match.scorePlayer2, 
+                    "ID player1": match.player1,
+                    "ID player2": match.player2,
+                    "color_player1":match.color_player1,
+                    "color_player2": match.color_player2
+                    }
+                    matches_data.append(match_dict)
+
+                rounds_dict={
+                "name": round_.name,
+                "round_number": round_.round_number,
+                "start_time": round_.start_time, 
+                "end_time": round_. end_time,
+                "matches": matches_data
+                }
+                rounds_data.append(rounds_dict)
+
             tournament_dict = {
-                "Tournament : " + 'id': tournament_list[t].ID,
-                'name': tournament_list[t].name,
-                'location': tournament_list[t].location,
-                'number_rounds': tournament_list[t].number_rounds,
-                'description': tournament_list[t].description,
+                "Tournament : " + 'id': tournament.ID,
+                'name': tournament.name,
+                'location': tournament.location,
+                'number_rounds': tournament.number_rounds,
+                'description': tournament.description,
                 'list of players': players_data,
                 'list of rounds': rounds_data,
                 'The winner is': winner
@@ -199,7 +200,7 @@ class MainView:
             # Add the dictionnay to the data list of tournaments
             tournaments_data.append(tournament_dict)
 
-            # Open a file in a write mode   
-            with open("tournament.json", 'w') as file:
-                # Write the data list of tournaments in JSON format
-                json.dump(tournaments_data, file, indent=4)     
+        # Open a file in a write mode   
+        with open("chess.json", 'w') as file:
+            # Write the data list of tournaments in JSON format
+            json.dump(tournaments_data, file, indent=4)     

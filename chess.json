@@ -67,42 +67,42 @@
             {
                 "name": "R1",
                 "round_number": 1,
-                "start_time": "08:22:35,10/07/2023",
-                "end_time": "08:24:39,10/07/2023",
+                "start_time": "11:46:10,12/07/2023",
+                "end_time": "11:46:30,12/07/2023",
                 "matches": [
                     {
                         "ID": 1,
-                        "scorePlayer1": 4.0,
-                        "scorePlayer2": 2.0,
-                        "player1": 7,
-                        "player2": 2,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 6,
+                        "ID player2": 1,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 2,
-                        "scorePlayer1": 2.0,
-                        "scorePlayer2": 2.5,
-                        "player1": 4,
-                        "player2": 3,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 2,
+                        "ID player2": 4,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 3,
-                        "scorePlayer1": 1.5,
-                        "scorePlayer2": 2.0,
-                        "player1": 8,
-                        "player2": 5,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 7,
+                        "ID player2": 8,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 4,
-                        "scorePlayer1": 2.0,
-                        "scorePlayer2": 0.0,
-                        "player1": 6,
-                        "player2": 1,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 5,
+                        "ID player2": 3,
                         "color_player1": "white",
                         "color_player2": "black"
                     }
@@ -111,42 +111,42 @@
             {
                 "name": "R2",
                 "round_number": 2,
-                "start_time": "08:24:48,10/07/2023",
-                "end_time": "08:24:59,10/07/2023",
+                "start_time": "11:46:32,12/07/2023",
+                "end_time": "11:46:42,12/07/2023",
                 "matches": [
                     {
                         "ID": 1,
-                        "scorePlayer1": 4.0,
-                        "scorePlayer2": 2.0,
-                        "player1": 7,
-                        "player2": 2,
+                        "scorePlayer1": 2.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 3,
+                        "ID player2": 4,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 2,
                         "scorePlayer1": 2.0,
-                        "scorePlayer2": 2.5,
-                        "player1": 4,
-                        "player2": 3,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 6,
+                        "ID player2": 7,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 3,
-                        "scorePlayer1": 1.5,
-                        "scorePlayer2": 2.0,
-                        "player1": 8,
-                        "player2": 5,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 1,
+                        "ID player2": 2,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 4,
-                        "scorePlayer1": 2.0,
-                        "scorePlayer2": 0.0,
-                        "player1": 6,
-                        "player2": 1,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 5,
+                        "ID player2": 8,
                         "color_player1": "white",
                         "color_player2": "black"
                     }
@@ -155,42 +155,42 @@
             {
                 "name": "R3",
                 "round_number": 3,
-                "start_time": "08:25:02,10/07/2023",
-                "end_time": "08:25:12,10/07/2023",
+                "start_time": "11:46:46,12/07/2023",
+                "end_time": "11:49:18,12/07/2023",
                 "matches": [
                     {
                         "ID": 1,
-                        "scorePlayer1": 4.0,
+                        "scorePlayer1": 3.0,
                         "scorePlayer2": 2.0,
-                        "player1": 7,
-                        "player2": 2,
+                        "ID player1": 3,
+                        "ID player2": 6,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 2,
                         "scorePlayer1": 2.0,
-                        "scorePlayer2": 2.5,
-                        "player1": 4,
-                        "player2": 3,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 2,
+                        "ID player2": 4,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 3,
-                        "scorePlayer1": 1.5,
-                        "scorePlayer2": 2.0,
-                        "player1": 8,
-                        "player2": 5,
+                        "scorePlayer1": 2.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 7,
+                        "ID player2": 8,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 4,
-                        "scorePlayer1": 2.0,
+                        "scorePlayer1": 1.0,
                         "scorePlayer2": 0.0,
-                        "player1": 6,
-                        "player2": 1,
+                        "ID player1": 1,
+                        "ID player2": 5,
                         "color_player1": "white",
                         "color_player2": "black"
                     }
@@ -199,48 +199,48 @@
             {
                 "name": "R4",
                 "round_number": 4,
-                "start_time": "08:25:15,10/07/2023",
-                "end_time": "08:25:24,10/07/2023",
+                "start_time": "11:49:19,12/07/2023",
+                "end_time": "11:49:47,12/07/2023",
                 "matches": [
                     {
                         "ID": 1,
-                        "scorePlayer1": 4.0,
-                        "scorePlayer2": 2.0,
-                        "player1": 7,
-                        "player2": 2,
+                        "scorePlayer1": 3.0,
+                        "scorePlayer2": 3.0,
+                        "ID player1": 3,
+                        "ID player2": 2,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 2,
                         "scorePlayer1": 2.0,
-                        "scorePlayer2": 2.5,
-                        "player1": 4,
-                        "player2": 3,
+                        "scorePlayer2": 3.0,
+                        "ID player1": 6,
+                        "ID player2": 7,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 3,
                         "scorePlayer1": 1.5,
-                        "scorePlayer2": 2.0,
-                        "player1": 8,
-                        "player2": 5,
+                        "scorePlayer2": 1.5,
+                        "ID player1": 1,
+                        "ID player2": 4,
                         "color_player1": "white",
                         "color_player2": "black"
                     },
                     {
                         "ID": 4,
-                        "scorePlayer1": 2.0,
-                        "scorePlayer2": 0.0,
-                        "player1": 6,
-                        "player2": 1,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 8,
+                        "ID player2": 5,
                         "color_player1": "white",
                         "color_player2": "black"
                     }
                 ]
             }
         ],
-        "The winner is": "charlie7"
+        "The winner is": "charlie2"
     }
 ]
