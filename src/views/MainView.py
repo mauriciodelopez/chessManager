@@ -61,7 +61,6 @@ class MainView:
         id_player = match.player1-1
         id_player2 = match.player2-1
         print("\nMatch", match)
-
         (message) =\
             f"Please enter the score of {players_list[id_player].first_name}"
         (input_score) =\

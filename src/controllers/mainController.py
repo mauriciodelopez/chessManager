@@ -78,17 +78,14 @@ class MainController:
                                            score1, score2, player1, player2)
                         new_round.add_matche(new_match)
 
-                    for m in range(0, len(new_round.matches)):
+                    for match in new_round.matches:
                         (score_player1, score_player2) =\
                          MainView.resume_match_view(
-                            new_round.matches[m], new_tournament.players)
-                        new_round.matches[m].scorePlayer1 += score_player1
-                        new_round.matches[m].scorePlayer2 += score_player2
-                        (cls.round_players[new_round.matches[m].player1]) =\
-                            new_round.matches[m].scorePlayer1
-                        (cls.round_players[new_round.matches[m].player2]) =\
-                            new_round.matches[m].scorePlayer2
-
+                            match, cls.players)
+                        match.scorePlayer1 += score_player1
+                        match.scorePlayer2 += score_player2
+                        cls.round_players[match.player1] = match.scorePlayer1
+                        cls.round_players[match.player2] = match.scorePlayer2
                     end_date = MainView.resume_round_view()
                     new_round.end_time = end_date
 
