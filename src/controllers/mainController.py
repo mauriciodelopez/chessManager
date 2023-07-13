@@ -54,57 +54,40 @@ class MainController:
 
                 print("Players: ", MainView.show_players_list(cls.players))
                 print("\nPlease, insert  8 players: ")
-                for k in range (8):  # 8 players
-                    id = MainView.get_player()  # los metodos llevan parentesis
+                for k in range(8):
+                    id = MainView.get_player()
                     new_tournament.add_player(cls.players[id])
-                    # busca con el id el jugador
-                    # el va a buscar y agregar a
-                    # la lista de jugadores el ID escrito
                     cls.round_players = {player.ID: 0 for
                                          player in new_tournament.players}
-                    # dictionnaire clave dos puntos ID,
-                    # y un ciclo for para que lo
-                    # haga con todos los Id de todos los jugadores
-                    # create & start round & generate pairing players,
-                    # create match & start match
-                    # 4 rondas que se crean
+
                 for i in range(new_tournament.number_rounds):
-                    # trae la informacion de la vista
                     round_data = MainView.round_view()
-                    #  creation instancia de l'objet round
                     new_round = Round(
                         round_data['name'],
                         round_data['round_number'],
                         round_data['start_time']
                                     )
                     new_tournament.add_round(new_round)
-                    #  agrega la ronda a la lista
-                    matche = new_round.get_match_pairing(cls.round_players, len(new_tournament.rounds))
+                    matche = new_round.get_match_pairing(
+                        cls.round_players, len(new_tournament.rounds))
                     print('Match created: ', matche)
-                    # create match into round  y se repite 4 veces
-                    # donc 4 partidos y sale del for
-                    for j in range(new_tournament.number_rounds):
-                        # entro en el primer partido del
-                        # primer round y se repite 4 veces
-                        score1, score2, player1, player2 = matche[j]
-                        new_match = Matche(len(new_round.matches) + 1, score1, score2, player1, player2)
-                        #  instancia de l'objet matches
-                        new_round.add_matche(new_match)
-                        # agrego a la lista new matche
 
-                    # add score of match   Agregar score
-                    # al player y se repite 4 veces y
-                    # vuelve a la linea 68 a crear
-                    # la segunda ronda, linea 68 a 92
-                    # se repite hasta terminar el torneo
+                    for j in range(new_tournament.number_rounds):
+                        score1, score2, player1, player2 = matche[j]
+                        new_match = Matche(len(new_round.matches) + 1,
+                                           score1, score2, player1, player2)
+                        new_round.add_matche(new_match)
+
                     for m in range(0, len(new_round.matches)):
-                        score_player1, score_player2 = MainView.resume_match_view(new_round.matches[m], new_tournament.players)
+                        (score_player1, score_player2) =\
+                         MainView.resume_match_view(
+                            new_round.matches[m], new_tournament.players)
                         new_round.matches[m].scorePlayer1 += score_player1
-                        # += for cumulate in order
-                        # additioned to the last result
                         new_round.matches[m].scorePlayer2 += score_player2
-                        cls.round_players[new_round.matches[m].player1] = new_round.matches[m].scorePlayer1
-                        cls.round_players[new_round.matches[m].player2] = new_round.matches[m].scorePlayer2
+                        (cls.round_players[new_round.matches[m].player1]) =\
+                            new_round.matches[m].scorePlayer1
+                        (cls.round_players[new_round.matches[m].player2]) =\
+                            new_round.matches[m].scorePlayer2
 
                     end_date = MainView.resume_round_view()
                     new_round.end_time = end_date
@@ -118,45 +101,54 @@ class MainController:
                 MainView.show_players_list(cls.players)
 
             elif choice == 5:
-                new_tournament = Tournament(len(cls.tournaments) + 1, 'Ta', 'Paris',
-                                            '12/07/2023', '12/07/2023', 'Director')
+                (new_tournament) =\
+                    Tournament(len(cls.tournaments) + 1, 'Ta', 'Paris',
+                               '12/07/2023', '12/07/2023', 'Director')
                 cls.tournaments.append(new_tournament)
-                new_player1 = Player(len(cls.players) + 1, 'AB12345', 'charlie1',
-                                     'dupond1', '12/07/1989', 'male')
+                (new_player1) =\
+                    Player(len(cls.players) + 1, 'AB12345', 'charlie1',
+                           'dupond1', '12/07/1989', 'male')
                 cls.players.append(new_player1)
-                new_player2 = Player(len(cls.players) + 1, 'AB12346', 'charlie2',
-                                     'dupond2', '12/07/1989', 'male')
+                (new_player2) =\
+                    Player(len(cls.players) + 1, 'AB12346', 'charlie2',
+                           'dupond2', '12/07/1989', 'male')
                 cls.players.append(new_player2)
-                new_player3 = Player(len(cls.players) + 1, 'AB12347', 'charlie3',
-                                     'dupond3', '12/07/1989', 'male')
+                (new_player3) =\
+                    Player(len(cls.players) + 1, 'AB12347', 'charlie3',
+                           'dupond3', '12/07/1989', 'male')
                 cls.players.append(new_player3)
-                new_player4 = Player(len(cls.players) + 1, 'AB12348', 'charlie4',
-                                     'dupond4', '12/07/1989', 'male')
+                (new_player4) =\
+                    Player(len(cls.players) + 1, 'AB12348', 'charlie4',
+                           'dupond4', '12/07/1989', 'male')
                 cls.players.append(new_player4)
-                new_player5 = Player(len(cls.players) + 1, 'AB12349', 'charlie5',
-                                     'dupond5', '12/07/1989', 'male')
+                (new_player5) =\
+                    Player(len(cls.players) + 1, 'AB12349', 'charlie5',
+                           'dupond5', '12/07/1989', 'male')
                 cls.players.append(new_player5)
-                new_player6 = Player(len(cls.players) + 1, 'AB12310', 'charlie6',
-                                     'dupond6', '12/07/1989', 'male')
+                (new_player6) =\
+                    Player(len(cls.players) + 1, 'AB12310', 'charlie6',
+                           'dupond6', '12/07/1989', 'male')
                 cls.players.append(new_player6)
-                new_player7 = Player(len(cls.players) + 1, 'AB12311', 'charlie7',
-                                     'dupond7', '12/07/1989', 'male')
+                (new_player7) =\
+                    Player(len(cls.players) + 1, 'AB12311', 'charlie7',
+                           'dupond7', '12/07/1989', 'male')
                 cls.players.append(new_player7)
-                new_player8 = Player(len(cls.players) + 1, 'AB12312', 'charlie8',
-                                     'dupond8', '12/07/1989', 'male')
+                (new_player8) =\
+                    Player(len(cls.players) + 1, 'AB12312', 'charlie8',
+                           'dupond8', '12/07/1989', 'male')
                 cls.players.append(new_player8)
                 print("Tournament and Players created")
 
-            # Show the tournament end & the alls
-            # scores of players (max score, stalement)
             elif choice == 6:
                 # resume_data = MainView.resume_tournament_view
                 # print('Final score', resume_data)
                 print("End of Tournament", new_tournament.ID)
                 max_key = max(cls.round_players, key=cls.round_players.get)
                 # max method reserved to find the maximum number
-                MainController.winner = new_tournament.players[max_key-1].first_name
-                print("the winner of tournament is player =", MainController.winner)
+                (MainController.winner) =\
+                    new_tournament.players[max_key-1].first_name
+                print("the winner of tournament is player =",
+                      MainController.winner)
 
             elif choice == 7:
                 MainView.generateJson(cls.tournaments, MainController.winner)

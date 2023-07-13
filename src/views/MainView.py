@@ -62,8 +62,11 @@ class MainView:
         id_player2 = match.player2-1
         print("\nMatch", match)
 
-        message = f"Please enter the score of {players_list[id_player].first_name}"
-        input_score = float(input(message + " (0=lost, 1=winner, 0.5=stalemate) of match #  "))
+        (message) =\
+            f"Please enter the score of {players_list[id_player].first_name}"
+        (input_score) =\
+            float(input(message +
+                        " (0=lost, 1=winner, 0.5=stalemate) of match #  "))
 
         input_score_player1 = input_score
 
@@ -73,7 +76,8 @@ class MainView:
 
         elif input_score_player1 == 0.0:
             input_score_player2 = 1.0
-            print("The winner is player2 ", players_list[id_player2].first_name)
+            print("The winner is player2 ",
+                  players_list[id_player2].first_name)
 
         elif input_score_player1 == 0.5:
             input_score_player2 = 0.5
@@ -114,11 +118,9 @@ class MainView:
         return input_player_id - 1
 
     @staticmethod
-    # metodo que no requiere de una instancia de la clase para ser llamado
     def show_players_list(players_list):
 
-        players_list = sorted(players_list, key = lambda x: x.first_name)
-        # para ordenar por orden alphabetico del nombre
+        players_list = sorted(players_list, key=lambda x: x.first_name)
 
         for p in range(0, len(players_list)):
             print(f" {players_list[p]}")
@@ -136,7 +138,6 @@ class MainView:
 
         for tournament in tournament_list:
             rounds_data = []
-            match_data = []
             players_data = []
 
             for player in tournament.players:
@@ -183,13 +184,9 @@ class MainView:
                 'description': tournament.description,
                 'list of players': players_data,
                 'list of rounds': rounds_data,
-                'The winner is': winner
-                                 }
-
-            # Add the dictionnay to the data list of tournaments
+                'The winner is': winner}
             tournaments_data.append(tournament_dict)
 
-        # Open a file in a write mode
         with open("chess.json", 'w') as file:
-            # Write the data list of tournaments in JSON format
-            json.dump(tournaments_data, file, indent = 4)
+
+            json.dump(tournaments_data, file, indent=4)

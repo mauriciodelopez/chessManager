@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/mauriciolopez/Desktop/tournamentManager/chessManager/env"
+VIRTUAL_ENV="/Users/mauriciolopez/Desktop/chessManager/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

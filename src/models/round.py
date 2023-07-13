@@ -37,7 +37,7 @@ class Round:
 
             match = (score1, score2, player1, player2)
             match_list.append(match)
-        # Ordenar los emparejamientos por puntaje descendente
+        # Sort pairings by descending score
         match_list = sorted(match_list, key=lambda x: x[0], reverse=True)
 
         return match_list
