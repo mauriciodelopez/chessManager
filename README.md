@@ -41,39 +41,59 @@ python main.py
 # Usage
 The main menu is split into 7 options.
 
-#1 ▻ Create a tournament :
+1 ▻ Create a tournament :
+
 The program lets you manage chess tournaments. When using it for the first time, select "Create a tournament", then let us guide you.
+
 ♟️ If there are no players in the database, you will be prompted to create one.
+
 ♟️ You can also choose "DEFAULT", and use the players in the database. 
+
 ♟️ During a tournament, you will be asked to enter the results after each match. At the end of a tournament, a ranking will be generated.
+
 ♟️ During a tournament, you'll be able to save the current tournament, load a new one, view or modify rankings.
 
-#2 ▻ Create players :
+2 ▻ Create players :
+
 When you select this option, you will be prompted to enter the number of players to be created.
 Then let the program guide you.
 
-#3 ▻ Get_player to tournament :
+3 ▻ Get_player to tournament :
+
 When you select this option, you will be prompted to select 8 players & enter their #ID to be created.
 Then let the program guide you.
 
-#4 ▻ Reports :
+4 ▻ Reports :
+
 ♟️This section allows you to generate various reports.
+
 ♟️You can view: overall player rankings by ranking and alphabetical order.
+
 ♟️Details of current and past tournaments: tournament player rankings, rounds and matches of each tournament, also match results.
 
-#5 ▻ Default :
+5 ▻ Default :
+
 This section lets you create different players from a default database.
 Then let the program guide you.
 
-#6 ▻ Resume tournament :
-This section allows you to view the number of the just completed tournament and the winner of the tournament. 
-#7 ▻ Generate JSON file :
-This section allows you to view : 
-♟️tournament details, 
-♟️the list of players in the tournament with their details, 
-♟️details of each round and match, 
-♟️the score of each match, 
-♟️the color of the figures, 
+6 ▻ Resume tournament :
+
+This section allows you to view the number of the just completed tournament and the winner of the tournament.
+
+7 ▻ Generate JSON file :
+
+This section allows you to view :
+
+♟️tournament details.
+
+♟️the list of players in the tournament with their details.
+
+♟️details of each round and match.
+
+♟️the score of each match.
+
+♟️the color of the figures.
+
 ♟️tournament winner.
 
 
