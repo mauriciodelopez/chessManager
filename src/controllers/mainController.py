@@ -10,7 +10,8 @@ class MainController:
     tournaments = []
     players = []
     round_players = {}
-    winner = " "
+    winner = []
+    selected = []
 
     @classmethod
     def main_menu(cls):
@@ -54,12 +55,16 @@ class MainController:
 
                 print("Players: ", MainView.show_players_list(cls.players))
                 print("\nPlease, insert  8 players: ")
-                for k in range(8):
-                    id = MainView.get_player()
-                    new_tournament.add_player(cls.players[id])
-                    cls.round_players = {player.ID: 0 for
-                                         player in new_tournament.players}
+                while len(new_tournament.players) < 8:
 
+                    id = MainView.get_player()
+                    if id in cls.selected:
+                        print("the id of player is repeated")
+                    else:
+                        cls.selected.append(id)
+                        new_tournament.add_player(cls.players[id])
+                        (cls.round_players) =\
+                            {player.ID: 0 for player in new_tournament.players}
                 for i in range(new_tournament.number_rounds):
                     round_data = MainView.round_view()
                     new_round = Round(
@@ -88,6 +93,17 @@ class MainController:
                         cls.round_players[match.player2] = match.scorePlayer2
                     end_date = MainView.resume_round_view()
                     new_round.end_time = end_date
+
+                # resume_data = MainView.resume_tournament_view
+                # print('Final score', resume_data)
+                print("End of Tournament", new_tournament.ID)
+                max_key = max(cls.round_players, key=cls.round_players.get)
+                # max method reserved to find the maximum number
+                MainController.winner.append(
+                    cls.players[max_key-1].first_name)
+                print("the winner of tournament is player =",
+                      MainController.winner[new_tournament.ID-1])
+                cls.selected = []
 
             elif choice == 4:
 
@@ -137,17 +153,6 @@ class MainController:
                 print("Tournament and Players created")
 
             elif choice == 6:
-                # resume_data = MainView.resume_tournament_view
-                # print('Final score', resume_data)
-                print("End of Tournament", new_tournament.ID)
-                max_key = max(cls.round_players, key=cls.round_players.get)
-                # max method reserved to find the maximum number
-                (MainController.winner) =\
-                    new_tournament.players[max_key-1].first_name
-                print("the winner of tournament is player =",
-                      MainController.winner)
-
-            elif choice == 7:
                 MainView.generateJson(cls.tournaments, MainController.winner)
                 print("file generated")
 

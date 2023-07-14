@@ -114,7 +114,7 @@ Write the next text:
 exclude = .git, env, __pycache__, .gitignore
 max-line-length = 119
 ```
-Write this : 
+Type the command : 
 
 ```python
 flake8 --format=html --htmldir=flake8_report

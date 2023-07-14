@@ -15,8 +15,7 @@ class MainView:
         print('3: Get_player to tournament')
         print('4: Reports')
         print('5: Default')
-        print('6: Resume tournament')
-        print('7: Generate JSON file')
+        print('6: Generate JSON file')
         print('0: Exit')
         print("\n__________________________________\n\n")
 
@@ -183,7 +182,7 @@ class MainView:
                 'description': tournament.description,
                 'list of players': players_data,
                 'list of rounds': rounds_data,
-                'The winner is': winner}
+                'The winner is': winner[tournament.ID-1]}
             tournaments_data.append(tournament_dict)
 
         with open("chess.json", 'w') as file:
