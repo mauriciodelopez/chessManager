@@ -6,16 +6,16 @@ from views.matcheView import MatcheView
 
 class MatcheController:
 
-    round_players = {}
+    
 
-    @classmethod
-    def resume_match(cls, match):
+    @staticmethod
+    def resume_match (match,round_players):
         (score_player1, score_player2) =\
             MatcheView.resume_match_view(match, PlayerController.players)
         match.scorePlayer1 += score_player1
         match.scorePlayer2 += score_player2
-        cls.round_players[match.player1] += match.scorePlayer1
-        cls.round_players[match.player2] += match.scorePlayer2
+        round_players[match.player1] += match.scorePlayer1
+        round_players[match.player2] += match.scorePlayer2
 
     @staticmethod
     def create_match(new_round, score1, score2, player1, player2):

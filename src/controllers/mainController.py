@@ -37,22 +37,11 @@ class MainController:
                         TournamenController.tournaments[-1].add_player(PlayerController.players[id])
                         (RoundController.round_players) =\
                             {player.ID: 0 for player in TournamenController.tournaments[-1].players}
-
-                for i in range(TournamenController.tournaments[-1].number_rounds):
-                    new_round = RoundController.create_round()
-                    TournamenController.tournaments[-1].add_round(new_round)
-                    matche = new_round.get_match_pairing(
-                        RoundController.round_players, len(TournamenController.tournaments[-1].rounds))
-                    print('Match created: ', matche)
-
-                    for j in range(TournamenController.tournaments[-1].number_rounds):
-                        score1, score2, player1, player2 = matche[j]
-                        MatcheController.create_match(new_round, score1, score2, player1, player2)
-
-                    for m in range(0, len(new_round.matches)):
-                        MatcheController.resume_match(new_round.matches[m])
-                    RoundController.resume_round(new_round)
-
+                
+                RoundController.generate_matches(TournamenController.tournaments[-1])
+                TournamenController.get_winner()
+                cls.selected = []
+                
                 # resume_data = MainView.resume_tournament_view
                 # print('Final score', resume_data)
 
