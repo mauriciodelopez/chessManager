@@ -1,8 +1,7 @@
 from models.tournament import Tournament
-from views.MainView import MainView
 from controllers.playerController import PlayerController
-from controllers.matcheController import MatcheController
 from views.tournamentView import TournamentView
+from controllers.roundController import RoundController
 
 
 class TournamenController():
@@ -45,7 +44,7 @@ class TournamenController():
     @classmethod
     def get_winner(cls):
         print("End of Tournament", cls.tournaments[-1].ID)
-        max_key = max(MatcheController.round_players, key=MatcheController.round_players.get)
+        max_key = max(RoundController.round_players, key=RoundController.round_players.get)
         # max method reserved to find the maximum number
         cls.winners.append(
             PlayerController.players[max_key-1].first_name)

@@ -1,4 +1,3 @@
-from views.MainView import MainView
 from models.round import Round
 from views.roundView import RoundView
 from controllers.matcheController import MatcheController
@@ -17,7 +16,7 @@ class RoundController():
             round_data['start_time']
                         )
         return new_round
-
+    """end round generate date automatically"""
     @staticmethod
     def resume_round(new_round):
         end_date = RoundView.resume_round_view()
@@ -33,9 +32,9 @@ class RoundController():
 
             for j in range(tournament.number_rounds):
                 score1, score2, player1, player2 = matche[j]
-                RoundController.create_match(new_round, score1, score2, player1, player2)
+                MatcheController.create_match(new_round, score1, score2, player1, player2)
 
             for match in new_round.matches:
-                RoundController.resume_match(match, cls.round_players)
+                MatcheController.resume_match(match, cls.round_players)
 
             cls.resume_round(new_round)

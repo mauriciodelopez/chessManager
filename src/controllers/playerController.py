@@ -1,10 +1,10 @@
-from views.MainView import MainView
 from models.players import Player
 from views.playerView import PlayerView
 
 
-
 class PlayerController:
+
+    """create or get default player from database"""
 
     players = []
 
@@ -40,5 +40,6 @@ class PlayerController:
 
     @classmethod
     def showplayer(cls):
+        """Display all players of tournament"""
         print("\nPlAYERS OF TOURNAMENT\n")
         PlayerView.show_players_list(cls.players)

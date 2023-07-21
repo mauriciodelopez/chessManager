@@ -2,7 +2,6 @@ from views.MainView import MainView
 from controllers.tournamentController import TournamenController
 from controllers.playerController import PlayerController
 from controllers.roundController import RoundController
-from controllers.matcheController import MatcheController
 from views.playerView import PlayerView
 
 
@@ -37,11 +36,11 @@ class MainController:
                         TournamenController.tournaments[-1].add_player(PlayerController.players[id])
                         (RoundController.round_players) =\
                             {player.ID: 0 for player in TournamenController.tournaments[-1].players}
-                
+
                 RoundController.generate_matches(TournamenController.tournaments[-1])
                 TournamenController.get_winner()
                 cls.selected = []
-                
+
                 # resume_data = MainView.resume_tournament_view
                 # print('Final score', resume_data)
 
