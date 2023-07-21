@@ -96,6 +96,32 @@ This section allows you to view :
 
 ♟️tournament winner.
 
+# Generation of flake8 repport
+
+This section allows you to create a flake8 repport :
+
+install flake8 with the commande:
+
+```python
+pip install flake8-html
+```
+
+If doesn't exist, please to create setup.cfg file
+Write the next text:
+
+```python
+[flake8]
+exclude = .git, env, __pycache__, .gitignore
+max-line-length = 119
+```
+Write this : 
+
+```python
+flake8 --format=html --htmldir=flake8_report
+```
+
+
+
 
 
 
