@@ -33,9 +33,9 @@ class RoundController():
 
             for j in range(tournament.number_rounds):
                 score1, score2, player1, player2 = matche[j]
-                MatcheController.create_match(new_round, score1, score2, player1, player2)
+                RoundController.create_match(new_round, score1, score2, player1, player2)
 
             for match in new_round.matches:
-                MatcheController.resume_match(match, cls.round_players)
+                RoundController.resume_match(match, cls.round_players)
 
             cls.resume_round(new_round)
