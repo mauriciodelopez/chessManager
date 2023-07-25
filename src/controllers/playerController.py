@@ -1,5 +1,6 @@
 from models.players import Player
 from views.playerView import PlayerView
+from views.MainView import MainView
 
 
 class PlayerController:
@@ -11,9 +12,9 @@ class PlayerController:
     @classmethod
     def createPlayer(cls, national_ID='AB12345', first_name='charlie',
                      last_name='dupond', date_of_birth='12/07/1989', gender='male'):
-        option = input("to create the default players type 'y' ")
+        option = MainView.validate_yes("to create the default players type 'y' ")
 
-        if option == 'y':
+        if option :
             for i in range(8):
                 new_player = Player(
                     len(cls.players) + 1,

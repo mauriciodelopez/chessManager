@@ -1,0 +1,17 @@
+{
+    "tournaments": [
+        {
+            "ID": 1,
+            "name": "Ta",
+            "location": "Paris",
+            "date_start": "12/07/2023",
+            "date_end": "12/07/2023",
+            "number_rounds": 4,
+            "rounds": [],
+            "players": [],
+            "description": "Director"
+        }
+    ],
+    "players": [],
+    "round_players": {}
+}
