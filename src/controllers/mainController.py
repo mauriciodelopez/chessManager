@@ -1,16 +1,13 @@
 from views.MainView import MainView
-from models.tournament import Tournament
-from models.players import Player
-from models.round import Round
-from models.matches import Matche
+from controllers.tournamentController import TournamenController
+from controllers.playerController import PlayerController
+from controllers.roundController import RoundController
+from controllers.matcheController import MatcheController
+from views.playerView import PlayerView
 
 
 class MainController:
-
-    tournaments = []
-    players = []
-    round_players = {}
-    winner = " "
+    selected = []
 
     @classmethod
     def main_menu(cls):
@@ -19,41 +16,17 @@ class MainController:
             choice = MainView.showMenu()
             # creation of new tournament
             if choice == 1:
-                # return avec les reponses de l'user
-                tournament_data = MainView.tournament_view()
-                # creation de l'instance de l'objet tournoi
-                new_tournament = Tournament(
-                    # id qu'augmente genere
-                    # automatiqueme et se rajoute un a chaque foix
-                    len(cls.tournaments) + 1,
-                    tournament_data['name'],
-                    tournament_data['location'],
-                    tournament_data['date_start'],
-                    tournament_data['date_end'],
-                    tournament_data['description'])
-                # agregation du tournoi a la liste
-                cls.tournaments.append(new_tournament)
+                TournamenController.create_tournament()
 
             # create player
             elif choice == 2:
+                PlayerController.createPlayer()
 
-                player_data = MainView.newplayer_view()
-                new_player = Player(
-                    len(cls.players) + 1,
-                    player_data['national_ID'],
-                    player_data['first_name'],
-                    player_data['last_name'],
-                    player_data['date_of_birth'],
-                    player_data['gender']
-                    )
-
-                cls.players.append(new_player)
-
-            # add player of the tournament from db
+            # add player of the tournament from default db
             elif choice == 3:
-
-                print("Players: ", MainView.show_players_list(cls.players))
+                PlayerController.showplayer()
                 print("\nPlease, insert  8 players: ")
+<<<<<<< HEAD
                 for k in range(8):
                     id = MainView.get_player()
                     new_tournament.add_player(cls.players[id])
@@ -149,9 +122,37 @@ class MainController:
                     new_tournament.players[max_key-1].first_name
                 print("the winner of tournament is player =",
                       MainController.winner)
+=======
 
-            elif choice == 7:
-                MainView.generateJson(cls.tournaments, MainController.winner)
+                while len(TournamenController.tournaments[-1].players) < 8:
+
+                    id = PlayerView.get_player()
+                    if id in cls.selected:
+                        print("the id of player is repeated")
+                    else:
+                        cls.selected.append(id)
+                        TournamenController.tournaments[-1].add_player(PlayerController.players[id])
+                        (RoundController.round_players) =\
+                            {player.ID: 0 for player in TournamenController.tournaments[-1].players}
+                
+                RoundController.generate_matches(TournamenController.tournaments[-1])
+                TournamenController.get_winner()
+                cls.selected = []
+                
+                # resume_data = MainView.resume_tournament_view
+                # print('Final score', resume_data)
+>>>>>>> bd9e9df4fc362006e5057ee6501f4d122e2eb171
+
+                TournamenController.get_winner()
+                cls.selected = []
+
+            elif choice == 4:
+                TournamenController.show_tournament()
+                PlayerController.showplayer()
+                TournamenController.get_winner()
+
+            elif choice == 5:
+                MainView.generateJson(TournamenController.tournaments, TournamenController.winners)
                 print("file generated")
 
             elif choice == 0:

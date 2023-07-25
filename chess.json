@@ -1,0 +1,246 @@
+[
+    {
+        "Tournament : id": 1,
+        "name": "Ta",
+        "location": "12/07/2023",
+        "number_rounds": 4,
+        "description": "Director",
+        "list of players": [
+            {
+                "Players : ID": 1,
+                "first_name": "charlie0",
+                "last_name": "dupond0",
+                "date_of_birth": "12/07/1989",
+                "gender": "male"
+            },
+            {
+                "Players : ID": 2,
+                "first_name": "charlie1",
+                "last_name": "dupond1",
+                "date_of_birth": "12/07/1989",
+                "gender": "male"
+            },
+            {
+                "Players : ID": 3,
+                "first_name": "charlie2",
+                "last_name": "dupond2",
+                "date_of_birth": "12/07/1989",
+                "gender": "male"
+            },
+            {
+                "Players : ID": 4,
+                "first_name": "charlie3",
+                "last_name": "dupond3",
+                "date_of_birth": "12/07/1989",
+                "gender": "male"
+            },
+            {
+                "Players : ID": 5,
+                "first_name": "charlie4",
+                "last_name": "dupond4",
+                "date_of_birth": "12/07/1989",
+                "gender": "male"
+            },
+            {
+                "Players : ID": 6,
+                "first_name": "charlie5",
+                "last_name": "dupond5",
+                "date_of_birth": "12/07/1989",
+                "gender": "male"
+            },
+            {
+                "Players : ID": 7,
+                "first_name": "charlie6",
+                "last_name": "dupond6",
+                "date_of_birth": "12/07/1989",
+                "gender": "male"
+            },
+            {
+                "Players : ID": 8,
+                "first_name": "charlie7",
+                "last_name": "dupond7",
+                "date_of_birth": "12/07/1989",
+                "gender": "male"
+            }
+        ],
+        "list of rounds": [
+            {
+                "name": "R1",
+                "round_number": 1,
+                "start_time": "08:26:10,18/07/2023",
+                "end_time": "08:26:17,18/07/2023",
+                "matches": [
+                    {
+                        "ID": 1,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 7,
+                        "ID player2": 8,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 2,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 2,
+                        "ID player2": 5,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 3,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 6,
+                        "ID player2": 1,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 4,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 3,
+                        "ID player2": 4,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    }
+                ]
+            },
+            {
+                "name": "R2",
+                "round_number": 2,
+                "start_time": "08:26:19,18/07/2023",
+                "end_time": null,
+                "matches": [
+                    {
+                        "ID": 1,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 1,
+                        "ID player2": 2,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 2,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 3,
+                        "ID player2": 4,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 3,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 5,
+                        "ID player2": 6,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 4,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 7,
+                        "ID player2": 8,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    }
+                ]
+            },
+            {
+                "name": "R3",
+                "round_number": 3,
+                "start_time": "08:26:29,18/07/2023",
+                "end_time": "08:26:42,18/07/2023",
+                "matches": [
+                    {
+                        "ID": 1,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 1,
+                        "ID player2": 2,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 2,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 3,
+                        "ID player2": 4,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 3,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 5,
+                        "ID player2": 6,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 4,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 7,
+                        "ID player2": 8,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    }
+                ]
+            },
+            {
+                "name": "R4",
+                "round_number": 4,
+                "start_time": "08:26:44,18/07/2023",
+                "end_time": "08:26:51,18/07/2023",
+                "matches": [
+                    {
+                        "ID": 1,
+                        "scorePlayer1": 0.0,
+                        "scorePlayer2": 1.0,
+                        "ID player1": 1,
+                        "ID player2": 2,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 2,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 3,
+                        "ID player2": 4,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 3,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 5,
+                        "ID player2": 6,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    },
+                    {
+                        "ID": 4,
+                        "scorePlayer1": 1.0,
+                        "scorePlayer2": 0.0,
+                        "ID player1": 7,
+                        "ID player2": 8,
+                        "color_player1": "white",
+                        "color_player2": "black"
+                    }
+                ]
+            }
+        ],
+        "The winner is": "charlie6"
+    }
+]

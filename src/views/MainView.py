@@ -1,4 +1,3 @@
-from datetime import datetime
 import json
 
 
@@ -14,19 +13,18 @@ class MainView:
         print('2: Create players')
         print('3: Get_player to tournament')
         print('4: Reports')
-        print('5: Default')
-        print('6: Resume tournament')
-        print('7: Generate JSON file')
+        print('5: Generate JSON file')
         print('0: Exit')
         print("\n__________________________________\n\n")
 
         choice = -1
-        while (choice < 0 or choice > 10):
+        while (choice < 0 or choice > 5):
             choice = int(input("Enter option: "))
 
         return choice
 
     @staticmethod
+<<<<<<< HEAD
     def tournament_view():
 
         inputTournament = input("Enter the name of tournament:  ")
@@ -132,8 +130,9 @@ class MainView:
         for t in range(0, len(tournament_list)):
             print(f"{tournament_list[t]}")
 
+=======
+>>>>>>> bd9e9df4fc362006e5057ee6501f4d122e2eb171
     def generateJson(tournament_list, winner):
-
         tournaments_data = []
 
         for tournament in tournament_list:
@@ -184,7 +183,11 @@ class MainView:
                 'description': tournament.description,
                 'list of players': players_data,
                 'list of rounds': rounds_data,
+<<<<<<< HEAD
                 'The winner is': winner}
+=======
+                'The winner is': winner[tournament.ID-1]}
+>>>>>>> bd9e9df4fc362006e5057ee6501f4d122e2eb171
             tournaments_data.append(tournament_dict)
 
         with open("chess.json", 'w') as file:
