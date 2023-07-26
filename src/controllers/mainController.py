@@ -10,16 +10,6 @@ from models.round import Round
 from models.matches import Matche
 class MainController:
     selected = []
-
-    class Encoder(json.JSONEncoder):
-        def default(self, obj):
-            if isinstance(obj, Round):
-                return obj.__dict__  
-            elif isinstance(obj, Matche):
-                return obj.__dict__  
-            elif isinstance(obj, Player):
-                return obj.__dict__  
-            return json.JSONEncoder.default(self, obj)
     
     @classmethod
     def main_menu(cls):
@@ -29,43 +19,55 @@ class MainController:
             # creation of new tournament
             if choice == 1:
                 TournamenController.create_tournament()
-                cls.save_data(cls)
+                cls.save_data()
             # create player
             elif choice == 2:
                 PlayerController.createPlayer()
-                cls.save_data(cls)
+                cls.save_data()
             # add player of the tournament from default db
             elif choice == 3:
-                PlayerController.showplayer()
-                print("\nPlease, insert  8 players: ")
-                while len(TournamenController.tournaments[-1].players) < 8:
+                cont=0
+                if TournamenController.tournaments and PlayerController.players:
+                    for i in range(len(TournamenController.tournaments)):
+                        if TournamenController.tournaments[i].rounds==[]:
+                            print("Tournament # ",TournamenController.tournaments[i].ID,"-",TournamenController.tournaments[i].name)
+                            cont+=1
+                    for i in range(cont):
+                        tournament_choice = MainView.validate_int("Select a tournament: ")
+                        if 1 <= tournament_choice <= cont:
+                            PlayerController.showplayer()
+                            print("\nPlease, insert  8 players: ")
+                            while len(TournamenController.tournaments[tournament_choice-1].players) < 8:
 
-                    id = PlayerView.get_player()
-                    if id in cls.selected:
-                        print("the id of player is repeated")
+                                id = PlayerView.get_player()
+                                if id in cls.selected:
+                                    print("the id of player is repeated")
+                                else:
+                                    cls.selected.append(id)
+                                    TournamenController.tournaments[tournament_choice-1].add_player(PlayerController.players[id])
+                                    (RoundController.round_players) =\
+                                        {player.ID: 0 for player in TournamenController.tournaments[tournament_choice-1].players}
+
+                            RoundController.generate_matches(TournamenController.tournaments[tournament_choice-1])
+                            TournamenController.get_winner(tournament_choice-1)
+                            cls.selected = []
+
+                            cls.save_data()
+                            break;
+                        else:
+                            print("Invalid tournament selection.")
                     else:
-                        cls.selected.append(id)
-                        TournamenController.tournaments[-1].add_player(PlayerController.players[id])
-                        (RoundController.round_players) =\
-                            {player.ID: 0 for player in TournamenController.tournaments[-1].players}
-
-                RoundController.generate_matches(TournamenController.tournaments[-1])
-                TournamenController.get_winner()
-                cls.selected = []
-
-                # resume_data = MainView.resume_tournament_view
-                # print('Final score', resume_data)
-
-                cls.save_data(cls)
+                        print("No incomplete tournaments found.")
+                else:
+                    print("Error, you must create a tournament and at least 8 players first.")
+               
 
             elif choice == 4:
                 cls.generate_reports()
-                
-            elif choice == 5:
-                cls.generate_json()
+
 
             elif choice == 0:
-                cls.save_data(cls)
+                cls.save_data()
                 print("Exit...")
 
     def generate_reports():
@@ -106,88 +108,69 @@ class MainController:
                     print(round)
             else:
                 print("The tournament has not been created")
-
-    def save_data(cls):
-        data={
-            "tournaments":[tournament.__dict__ for tournament in TournamenController.tournaments],
-            "players":[player.__dict__ for player in PlayerController.players],
-            "round_players": RoundController.round_players
-            }
-        with open ("chess.json",'w') as file:
-            json.dump(data,file,indent=4,cls=cls.Encoder)
     
+    def save_data():
+
+        data = {
+        "tournaments": [tournament.to_dict() for tournament in TournamenController.tournaments],
+        "players": [player.to_dict() for player in PlayerController.players],
+    }
+        with open("chess.json", 'w') as file:
+            json.dump(data, file, indent=4)
+
+
+
     def load_data():
         try:
-            with open("chess.json",'r') as file:
-                data=json.load(file)
-            print("file",data)
-            TournamenController.tournaments=[Tournament(**t_data) for t_data in data["tournaments"]]
-            PlayerController.players=[Player(**p_data) for p_data in data["players"]]            
-            RoundController.round_players=data["round_players"]
+            with open("chess.json", 'r') as file:
+                data = json.load(file)
+
+            # to create instances of tournament from json DATABASE
+            tournaments_data = data["tournaments"]
+            TournamenController.tournaments = []
+            for t_data in tournaments_data:
+                tournament = Tournament(
+                    t_data["ID"],
+                    t_data["name"],
+                    t_data["location"],
+                    t_data["date_start"],
+                    t_data["date_end"],
+                    t_data["number_rounds"],
+                    t_data["description"]
+                )
+                TournamenController.tournaments.append(tournament)
+
+                # Agregamos los jugadores al torneo
+                players_data = t_data["players"]
+                for p_data in players_data:
+                    player = Player(
+                        p_data["ID"],
+                        p_data["national_ID"],
+                        p_data["first_name"],
+                        p_data["last_name"],
+                        p_data["date_of_birth"],
+                        p_data["gender"]
+                    )
+                    tournament.add_player(player)
+
+                # Agregamos los rounds al torneo
+                rounds_data = t_data["rounds"]
+                for r_data in rounds_data:
+                    round_ = Round(
+                        r_data["name"],
+                        r_data["round_number"],
+                        r_data["start_time"],
+                        r_data["end_time"]
+                    )
+                    tournament.add_round(round_)
+
+            # Cargamos la lista de jugadores directamente al PlayerController.players
+            PlayerController.players = [Player(**p_data) for p_data in data["players"]]
+
         except FileNotFoundError:
-            print("File not found")
+            print("Archivo no encontrado")
         except Exception as e:
-            print("Error ",str(e))
-
-    @staticmethod
-    def generateJson(tournament_list, winner):
-        tournaments_data = []
-
-        for tournament in tournament_list:
-            rounds_data = []
-            players_data = []
-
-            for player in tournament.players:
-
-                players_dict = {
-                    "Players : " +
-                    "ID": player.ID,
-                    "first_name": player.first_name,
-                    "last_name": player.last_name,
-                    "date_of_birth": player. date_of_birth,
-                    "gender": player.gender
-                                }
-                players_data.append(players_dict)
-
-            for round_ in tournament.rounds:
-                matches_data = []
-                for match in round_.matches:
-
-                    match_dict = {
-                        "ID": match.ID,
-                        "scorePlayer1": match.scorePlayer1,
-                        "scorePlayer2": match.scorePlayer2,
-                        "ID player1": match.player1,
-                        "ID player2": match.player2,
-                        "color_player1": match.color_player1,
-                        "color_player2": match.color_player2
-                                }
-                    matches_data.append(match_dict)
-
-                rounds_dict = {
-                    "name": round_.name,
-                    "round_number": round_.round_number,
-                    "start_time": round_.start_time,
-                    "end_time": round_. end_time,
-                    "matches": matches_data
-                            }
-                rounds_data.append(rounds_dict)
-
-            tournament_dict = {
-                "Tournament : " + 'id': tournament.ID,
-                'name': tournament.name,
-                'location': tournament.location,
-                'number_rounds': tournament.number_rounds,
-                'description': tournament.description,
-                'list of players': players_data,
-                'list of rounds': rounds_data,
-                'The winner is': winner[tournament.ID-1]}
-            tournaments_data.append(tournament_dict)
-
-        with open("chess_json.json", 'w') as file:
-
-            json.dump(tournaments_data, file, indent=4)
-        
+            print("Error: ", str(e))
         
 
 

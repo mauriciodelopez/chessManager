@@ -1,5 +1,6 @@
 from datetime import datetime
 from views.MainView import MainView
+import sys
 
 
 class RoundView():
@@ -27,3 +28,4 @@ class RoundView():
             return str(date.strftime('%H:%M:%S,%d/%m/%Y'))
         else : 
             print("error, please write y to continue")
+            sys.exit()

@@ -14,7 +14,6 @@ class MainView:
         print('2: Create players')
         print('3: Get_player to tournament')
         print('4: Reports')
-        print('5: Generate JSON file')
         print('0: Exit')
         print("\n__________________________________\n\n")
 
@@ -38,7 +37,7 @@ class MainView:
             try:
                 date_str = input(prompt)
                 user_input = datetime.strptime(date_str, "%d/%m/%Y")
-                return user_input
+                return (user_input.strftime("%d/%m/%Y"))
             except ValueError :
                 print("error, insert the valide date format dd/mm/yyyy ")
                 

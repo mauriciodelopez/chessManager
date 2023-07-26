@@ -28,3 +28,16 @@ class Tournament():
 
     def add_round(self, round):
         self.rounds.append(round)
+
+    def to_dict(self):
+        return {
+            "ID": self.ID,
+            "name": self.name,
+            "location": self.location,
+            "date_start": self.date_start,
+            "date_end": self.date_end,
+            "number_rounds": self.number_rounds,
+            "rounds": [round.to_dict() for round in self.rounds],  # Convertir los rounds a diccionarios
+            "players": [player.to_dict() for player in self.players],  # Convertir los players a diccionarios
+            "description": self.description
+        }

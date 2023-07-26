@@ -41,3 +41,12 @@ class Round:
         match_list = sorted(match_list, key=lambda x: x[0], reverse=True)
 
         return match_list
+    
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "round_number": self.round_number,
+            "start_time": self.start_time,
+            "end_time": self.end_time,
+            "matches": [match.to_dict() for match in self.matches]  # Convertir los matches a diccionarios
+        }

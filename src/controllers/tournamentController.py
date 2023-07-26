@@ -13,7 +13,7 @@ class TournamenController():
     @classmethod
     def create_tournament(cls, name='Ta', location='Paris', date_start='12/07/2023',
                           date_end='12/07/2023',number_rounds=4, rounds=None, players=None, description='Director'):
-        option = MainView.validate_yes("to create the default tournament type 'y' ")
+        option = MainView.validate_yes("to create the default tournament type 'y' or 'n' ")
 
         if option :
             new_tournament = Tournament(
@@ -46,11 +46,11 @@ class TournamenController():
         TournamentView.show_tournament_list(cls.tournaments)
 
     @classmethod
-    def get_winner(cls):
-        print("End of Tournament", cls.tournaments[-1].ID)
+    def get_winner(cls, id):
+        print("End of Tournament", cls.tournaments[id])
         max_key = max(RoundController.round_players, key=RoundController.round_players.get)
         # max method reserved to find the maximum number
         cls.winners.append(
             PlayerController.players[max_key-1].first_name)
         print("the winner of tournament is player =",
-              cls.winners[cls.tournaments[-1].ID-1])
+              cls.winners[id])
