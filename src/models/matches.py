@@ -17,4 +17,14 @@ class Matche():
                 f"ID player 2 = {self.player2}, " \
                 f"color_player1 = {self.color_player1}," \
                 f"color_player2 = {self.color_player2}, " \
-                
+                    
+    def to_dict(self):
+        return {
+            "ID": self.ID,
+            "scorePlayer1": self.scorePlayer1,
+            "scorePlayer2": self.scorePlayer2,
+            "ID player1": self.player1,
+            "ID player2": self.player2,
+            "color_player1": self.color_player1,
+            "color_player2": self.color_player2
+        }            

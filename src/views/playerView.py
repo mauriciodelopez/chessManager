@@ -1,3 +1,6 @@
+from views.MainView import MainView
+
+
 class PlayerView():
 
     @staticmethod
@@ -6,7 +9,7 @@ class PlayerView():
         input_national_ID = input("Please enter your national ID: ")
         input_first_name = input("Insert first_name: ")
         input_last_name = input("Insert the last name of player:  ")
-        input_date_of_birth = input("Insert the date_of_birth: ")
+        input_date_of_birth = MainView.validate_date("Insert the date_of_birth: ")
         input_gender = input("Insert gender of player: ")
 
         return {
@@ -19,7 +22,7 @@ class PlayerView():
 
     @staticmethod
     def get_player():
-        input_player_id = int(input("Insert the id of player: "))
+        input_player_id = MainView.validate_int(("Insert the id of player: "))
         print("Player added to the tournament\n ")
         return input_player_id - 1
 

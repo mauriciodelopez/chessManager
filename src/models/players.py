@@ -15,3 +15,13 @@ class Player:
                 f"last_name = {self.last_name}, "\
                 f"date_of_birth = {self.date_of_birth}, "\
                 f"gender = {self.gender}, "
+                
+    def to_dict(self):
+        return {
+            "ID": self.ID,
+            "national_ID": self.national_ID,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "date_of_birth": str(self.date_of_birth),  # Convertir date_of_birth a string
+            "gender": self.gender
+        }

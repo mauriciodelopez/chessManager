@@ -1,19 +1,20 @@
-from views.MainView import MainView
 from models.players import Player
 from views.playerView import PlayerView
-
+from views.MainView import MainView
 
 
 class PlayerController:
+
+    """create or get default player from database"""
 
     players = []
 
     @classmethod
     def createPlayer(cls, national_ID='AB12345', first_name='charlie',
                      last_name='dupond', date_of_birth='12/07/1989', gender='male'):
-        option = input("to create the default players type 'y' ")
+        option = MainView.validate_yes("to create the default players type 'y' or'n' ")
 
-        if option == 'y':
+        if option :
             for i in range(8):
                 new_player = Player(
                     len(cls.players) + 1,
@@ -40,5 +41,6 @@ class PlayerController:
 
     @classmethod
     def showplayer(cls):
+        """Display all players of tournament"""
         print("\nPlAYERS OF TOURNAMENT\n")
         PlayerView.show_players_list(cls.players)

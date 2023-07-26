@@ -1,4 +1,3 @@
-from views.MainView import MainView
 from models.round import Round
 from views.roundView import RoundView
 from controllers.matcheController import MatcheController
@@ -17,7 +16,7 @@ class RoundController():
             round_data['start_time']
                         )
         return new_round
-
+    """end round generate date automatically"""
     @staticmethod
     def resume_round(new_round):
         end_date = RoundView.resume_round_view()
