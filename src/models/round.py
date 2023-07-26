@@ -41,7 +41,7 @@ class Round:
         match_list = sorted(match_list, key=lambda x: x[0], reverse=True)
 
         return match_list
-    
+
     def to_dict(self):
         return {
             "name": self.name,

@@ -15,7 +15,7 @@ class Player:
                 f"last_name = {self.last_name}, "\
                 f"date_of_birth = {self.date_of_birth}, "\
                 f"gender = {self.gender}, "
-                
+
     def to_dict(self):
         return {
             "ID": self.ID,

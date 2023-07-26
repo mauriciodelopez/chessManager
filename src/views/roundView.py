@@ -23,9 +23,9 @@ class RoundView():
     def resume_round_view():
         date = datetime.now()
         resp = MainView.validate_yes("To end the round, insert 'y': ")
-        if resp :
+        if resp:
             print("Round ended")
             return str(date.strftime('%H:%M:%S,%d/%m/%Y'))
-        else : 
+        else:
             print("error, please write y to continue")
             sys.exit()

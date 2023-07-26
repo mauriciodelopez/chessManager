@@ -1,5 +1,6 @@
 from views.MainView import MainView
 
+
 class MatcheView():
 
     @staticmethod
@@ -11,7 +12,7 @@ class MatcheView():
             f"Please enter the score of {players_list[id_player].first_name}"
         (input_score) =\
             MainView.validate_score(message +
-                        " (0=lost, 1=winner, 0.5=stalemate) of match #  ")
+                                    " (0=lost, 1=winner, 0.5=stalemate) of match #  ")
 
         input_score_player1 = input_score
 

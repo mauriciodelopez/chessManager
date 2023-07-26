@@ -1,5 +1,4 @@
 from datetime import datetime
-import json
 
 
 class MainView:
@@ -24,39 +23,39 @@ class MainView:
         return choice
 
     def validate_int(prompt):
-        while True: 
+        while True:
             try:
                 user_input = int(input(prompt))
                 return user_input
-            except ValueError :
+            except ValueError:
                 print("error please insert a number")
-                
+
     def validate_date(prompt):
-        while True: 
+        while True:
             try:
                 date_str = input(prompt)
                 user_input = datetime.strptime(date_str, "%d/%m/%Y")
                 return (user_input.strftime("%d/%m/%Y"))
-            except ValueError :
+            except ValueError:
                 print("error, insert the valide date format dd/mm/yyyy ")
-                
+
     def validate_yes(prompt):
-        while True: 
+        while True:
 
             user_input = input(prompt).lower()
-            if user_input == "y" :  
+            if user_input == "y":
                 return True
-            elif user_input == "n" :
+            elif user_input == "n":
                 return False
-            else :
+            else:
                 print("Please insert = y or n")
-    
+
     def validate_score(prompt):
         while True:
             try:
                 user_input = float(input(prompt))
-                if user_input not in [0, 0.5, 1] :  
+                if user_input not in [0, 0.5, 1]:
                     raise ValueError
                 return user_input
-            except ValueError :
+            except ValueError:
                 print("Error please insert 0, 0.5, 1 ")

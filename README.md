@@ -114,11 +114,10 @@ Write the next text:
 exclude = .git, env, __pycache__, .gitignore
 max-line-length = 119
 ```
-<<<<<<< HEAD
+
 Write this : 
 =======
 Enter the command : 
->>>>>>> bd9e9df4fc362006e5057ee6501f4d122e2eb171
 
 ```python
 flake8 --format=html --htmldir=flake8_report

@@ -1,5 +1,6 @@
 from views.MainView import MainView
 
+
 class TournamentView():
 
     @staticmethod
@@ -9,7 +10,7 @@ class TournamentView():
         input_location = input("Enter the town of tournament:  ")
         input_date_start = MainView.validate_date("Enter the date of tournament start:  ")
         input_date_end = MainView.validate_date("Enter the tournament end date: ")
-        input_number_rounds=4
+        input_number_rounds = 4
         input_description = input("Enter description of tournament: ")
 
         print("tournament created by default")

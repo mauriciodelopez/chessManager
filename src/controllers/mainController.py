@@ -7,10 +7,12 @@ import json
 from models.tournament import Tournament
 from models.players import Player
 from models.round import Round
-from models.matches import Matche
+
+
 class MainController:
+
     selected = []
-    
+
     @classmethod
     def main_menu(cls):
         choice = None
@@ -26,12 +28,13 @@ class MainController:
                 cls.save_data()
             # add player of the tournament from default db
             elif choice == 3:
-                cont=0
+                cont = 0
                 if TournamenController.tournaments and PlayerController.players:
                     for i in range(len(TournamenController.tournaments)):
-                        if TournamenController.tournaments[i].rounds==[]:
-                            print("Tournament # ",TournamenController.tournaments[i].ID,"-",TournamenController.tournaments[i].name)
-                            cont+=1
+                        if TournamenController.tournaments[i].rounds == []:
+                            print("Tournament # ", TournamenController.tournaments[i].ID,
+                                  "-", TournamenController.tournaments[i].name)
+                            cont += 1
                     for i in range(cont):
                         tournament_choice = MainView.validate_int("Select a tournament: ")
                         if 1 <= tournament_choice <= cont:
@@ -44,23 +47,24 @@ class MainController:
                                     print("the id of player is repeated")
                                 else:
                                     cls.selected.append(id)
-                                    TournamenController.tournaments[tournament_choice-1].add_player(PlayerController.players[id])
+                                    TournamenController.tournaments[tournament_choice-1].add_player
+                                    (PlayerController.players[id])
                                     (RoundController.round_players) =\
-                                        {player.ID: 0 for player in TournamenController.tournaments[tournament_choice-1].players}
+                                        {player.ID: 0 for player in TournamenController.tournaments
+                                         [tournament_choice-1].players}
 
                             RoundController.generate_matches(TournamenController.tournaments[tournament_choice-1])
                             TournamenController.get_winner(tournament_choice-1)
                             cls.selected = []
 
                             cls.save_data()
-                            break;
+                            break
                         else:
                             print("Invalid tournament selection.")
                     else:
                         print("No incomplete tournaments found.")
                 else:
                     print("Error, you must create a tournament and at least 8 players first.")
-               
 
             elif choice == 4:
                 cls.generate_reports()
@@ -74,57 +78,54 @@ class MainController:
         print("\nList of players: ")
         for player in PlayerController.players:
             print(player)
-        
+
         print("\nList of tournaments: ")
         for tournament in TournamenController.tournaments:
             print(tournament)
 
-        print ("\n Name and Date of tournament")
-        tournament_id=MainView.validate_int("Insert id of tournament: ")
-        if tournament_id>0 and tournament_id <=len(TournamenController.tournaments):
-            tournament=TournamenController.tournaments [tournament_id-1]
+        print("\n Name and Date of tournament")
+        tournament_id = MainView.validate_int("Insert id of tournament: ")
+        if tournament_id > 0 and tournament_id <= len(TournamenController.tournaments):
+            tournament = TournamenController.tournaments[tournament_id-1]
             print(tournament)
         else:
             print("The tournament has not been created")
 
-        
-        if len (TournamenController.tournaments)>0:
+        if len(TournamenController.tournaments) > 0:
             print("\nList of players by tournament")
-            tournament_id=MainView.validate_int("Insert the id of tournament: ")
-            if tournament_id>0 and tournament_id<=len(TournamenController.tournaments):
-                tournament=TournamenController.tournaments[tournament_id-1]
+            tournament_id = MainView.validate_int("Insert the id of tournament: ")
+            if tournament_id > 0 and tournament_id <= len(TournamenController.tournaments):
+                tournament = TournamenController.tournaments[tournament_id-1]
                 for player in tournament.players:
                     print(player)
             else:
                 print("The tournament has not been created")
 
-        if len(TournamenController.tournaments)>0:
+        if len(TournamenController.tournaments) > 0:
             print("\nList of rounds")
-            tournament_id=MainView.validate_int("Insert id of tournament: ")
-            if tournament_id>0 and tournament_id<=len(TournamenController.tournaments):
-                tournament=TournamenController.tournaments[tournament_id-1]
+            tournament_id = MainView.validate_int("Insert id of tournament: ")
+            if tournament_id > 0 and tournament_id <= len(TournamenController.tournaments):
+                tournament = TournamenController.tournaments[tournament_id-1]
                 for round in tournament.rounds:
                     print(round)
             else:
                 print("The tournament has not been created")
-    
+
     def save_data():
 
         data = {
-        "tournaments": [tournament.to_dict() for tournament in TournamenController.tournaments],
-        "players": [player.to_dict() for player in PlayerController.players],
-    }
+                "tournaments": [tournament.to_dict() for tournament in TournamenController.tournaments],
+                "players": [player.to_dict() for player in PlayerController.players],
+                }
         with open("chess.json", 'w') as file:
             json.dump(data, file, indent=4)
-
-
 
     def load_data():
         try:
             with open("chess.json", 'r') as file:
                 data = json.load(file)
 
-            # Creamos instancias de Tournament a partir de los datos del JSON
+            #  instancias de Tournament a partir de los datos del JSON
             tournaments_data = data["tournaments"]
             TournamenController.tournaments = []
             for t_data in tournaments_data:

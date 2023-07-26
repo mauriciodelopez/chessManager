@@ -5,17 +5,16 @@ from controllers.roundController import RoundController
 from views.MainView import MainView
 
 
-
 class TournamenController():
     tournaments = []
     winners = []
 
     @classmethod
     def create_tournament(cls, name='Ta', location='Paris', date_start='12/07/2023',
-                          date_end='12/07/2023',number_rounds=4, rounds=None, players=None, description='Director'):
+                          date_end='12/07/2023', number_rounds=4, rounds=None, players=None, description='Director'):
         option = MainView.validate_yes("to create the default tournament type 'y' or 'n' ")
 
-        if option :
+        if option:
             new_tournament = Tournament(
                 len(cls.tournaments) + 1,
                 name,

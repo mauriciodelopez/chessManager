@@ -14,7 +14,7 @@ class PlayerController:
                      last_name='dupond', date_of_birth='12/07/1989', gender='male'):
         option = MainView.validate_yes("to create the default players type 'y' or'n' ")
 
-        if option :
+        if option:
             for i in range(8):
                 new_player = Player(
                     len(cls.players) + 1,
