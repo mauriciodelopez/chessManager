@@ -15,8 +15,7 @@ class Round:
         match_str = "\n".join(str(match) for match in self.matches)
         return f"\n ROUND #{self.round_number}:\n name = {self.name}, " \
             f"start_time = {self.start_time}, " \
-            f"end_time = {self.end_time}, " \
-            f"\n\nMATCH OF ROUND {self.round_number}:  {match_str}, "
+            f"end_time = {self.end_time}, " 
 
     def add_matche(self, matche):
         self.matches.append(matche)

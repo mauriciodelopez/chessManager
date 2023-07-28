@@ -46,10 +46,8 @@ class TournamenController():
 
     @classmethod
     def get_winner(cls, id):
-        print("End of Tournament", cls.tournaments[id])
+        print("End of Tournament", cls.tournaments[id].ID)
         max_key = max(RoundController.round_players, key=RoundController.round_players.get)
         # max method reserved to find the maximum number
         cls.winners.append(
-            PlayerController.players[max_key-1].first_name)
-        print("the winner of tournament is player =",
-              cls.winners[id])
+            PlayerController.players[max_key].first_name)

@@ -12,7 +12,6 @@ class Tournament():
         self.description = description
 
     def __str__(self):
-        round_str = "\n\n".join(str(round) for round in self.rounds)
 
         return f" \n\nDETAILS OF TOURNAMENT # {self.ID}:\n " \
             f"name =  {self.name}, " \
@@ -20,8 +19,7 @@ class Tournament():
             f"date_start = {self.date_start}, " \
             f"date_end = {self.date_end}, " \
             f"number_rounds = {self.number_rounds}, " \
-            f"description = {self.description}, "\
-            f"\n\nROUNDS OF TOURNAMENT:\n  {round_str}, "
+            f"description = {self.description}, "
 
     def add_player(self, player):
         self.players.append(player)
