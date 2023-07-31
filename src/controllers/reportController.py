@@ -1,4 +1,3 @@
-
 import json
 from controllers.tournamentController import TournamenController
 from controllers.playerController import PlayerController
@@ -6,11 +5,13 @@ from controllers.roundController import RoundController
 from models.tournament import Tournament
 from models.players import Player
 from models.round import Round
+from models.matches import Matche
 from views.reportView import ReportView
 
 
 class ReportController:
 
+    @staticmethod
     def generate_reports():
         while True:
             choice = ReportView.menu()
@@ -34,6 +35,7 @@ class ReportController:
                 print("Invalid choice. Please select a valid option.")
 
     # recuperer l'information du JSON FILE
+    @staticmethod
     def save_data():
 
         data = {
@@ -43,12 +45,12 @@ class ReportController:
                 }
         with open("chess.json", 'w') as file:
             json.dump(data, file, indent=4)
-
+    
+    @staticmethod
     def load_data():
         try:
             with open("chess.json", 'r') as file:
                 data = json.load(file)
-
             TournamenController.winners = data.get("winners", [])
             tournaments_data = data["tournaments"]
             TournamenController.tournaments = []
@@ -86,9 +88,22 @@ class ReportController:
                     )
                     tournament.add_round(round_)
 
+                    match_data = r_data["matches"]
+                    if match_data: 
+                        for m_data in match_data:
+                            player1_id = m_data["player1"]
+                            player2_id = m_data.get("player2", None)  
+                            match_ = Matche(
+                                m_data["ID"],
+                                m_data["scorePlayer1"],
+                                m_data["scorePlayer2"],
+                                player1_id,
+                                player2_id 
+                            )
+                            round_.add_matche(match_)
+
             PlayerController.players = [Player(**p_data) for p_data in data["players"]]
 
-            RoundController.round_players = data["round_players"]
         except FileNotFoundError:
             print("File not found")
         except Exception as e:

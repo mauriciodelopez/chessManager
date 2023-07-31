@@ -1,4 +1,3 @@
-
 from views.MainView import MainView
 
 

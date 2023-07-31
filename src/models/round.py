@@ -12,20 +12,30 @@ class Round:
         self.end_time = end_time
 
     def __str__(self):
-        match_str = "\n".join(str(match) for match in self.matches)
         return f"\n ROUND #{self.round_number}:\n name = {self.name}, " \
             f"start_time = {self.start_time}, " \
             f"end_time = {self.end_time}, " 
 
     def add_matche(self, matche):
         self.matches.append(matche)
+    
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "round_number": self.round_number,
+            "start_time": self.start_time,
+            "end_time": self.end_time,
+            "matches": [match.to_dict() for match in self.matches] 
+        }
 
-    def get_match_pairing(self, round_players, idx_round):
+
+    @staticmethod
+    def get_match_pairing(round_players, idx_round):
         lista = list(round_players.items())
-        lista = sorted(lista, key=lambda x: x[1], reverse=True)
-
-        if idx_round == 1:
+        if idx_round == 1 :
             random.shuffle(lista)
+        else:
+            lista = sorted(lista, key=lambda x: x[1], reverse=True)
 
         match_list = []
         player_list = cycle(lista)
@@ -36,8 +46,6 @@ class Round:
 
             match = (score1, score2, player1, player2)
             match_list.append(match)
-        # Sort pairings by descending score
-        match_list = sorted(match_list, key=lambda x: x[0], reverse=True)
 
         return match_list
 

@@ -5,19 +5,25 @@ class MainView:
 
     @classmethod
     def showMenu(cls):
-        print("\n__________________________________")
-        print("             WELCOME")
-        print("__________________________________\n")
-        print('Please select a action:\n')
-        print('1: Create a tournament')
-        print('2: Create players')
-        print('3: Get_player to tournament')
-        print('4: Reports')
-        print('0: Exit')
-        print("\n__________________________________\n\n")
+        
+        print("\n______________________________")
+        print("           MAIN MENU")
+        print("______________________________\n")
+        print("Please select an action:\n")
+        print("1. Create Tournament")
+        print("2. Create Players")
+        print("3. Add Players to Tournament")
+        print("4. Create Rounds")
+        print("5. Create Matches")
+        print("6. Reports")
+        print("7. Save Data (JSON)")
+        print("8. Load Data (JSON)")
+        print("9. Insert Test Data (Default Players & Tournament)")
+        print("0. Exit")
+        print("\n______________________________\n\n")
 
         choice = -1
-        while (choice < 0 or choice > 5):
+        while (choice < 0 or choice > 8):
             choice = cls.validate_int("Enter option: ")
 
         return choice
@@ -49,6 +55,16 @@ class MainView:
                 return False
             else:
                 print("Please insert = y or n")
+    @staticmethod
+    def validate_list(prompt):
+        while True:
+            try:
+                user_input = input(prompt)
+                id_list = [int(item.strip()) for item in user_input.split(",")]
+                return id_list
+            except ValueError:
+                print("Error: Invalid input. Please enter a comma-separated list of integers.")
+
 
     def validate_score(prompt):
         while True:
@@ -59,3 +75,4 @@ class MainView:
                 return user_input
             except ValueError:
                 print("Error please insert 0, 0.5, 1 ")
+
