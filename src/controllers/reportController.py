@@ -13,21 +13,25 @@ class ReportController:
 
     @staticmethod
     def generate_reports():
+        data = ReportController.load_data()
+        print(data)
+        if not data :
+            return "error"
         while True:
             choice = ReportView.menu()
 
             if choice == 1:
-                ReportView.print_list_of_players(PlayerController.players)
+                ReportView.print_list_of_players(data["players"])
             elif choice == 2:
-                ReportView.print_list_of_tournaments(TournamenController.tournaments)
+                ReportView.print_list_of_tournaments(data["tournaments"])
             elif choice == 3:
-                ReportView.print_tournament_by_id(TournamenController.tournaments)
+                ReportView.print_tournament_by_id(data["tournaments"])
             elif choice == 4:
-                ReportView.print_players_by_tournament(TournamenController.tournaments)
+                ReportView.print_players_by_tournament(data["tournaments"])
             elif choice == 5:
-                ReportView.print_list_of_rounds(TournamenController.tournaments)
+                ReportView.print_list_of_rounds(data["rounds"])
             elif choice == 6:
-                ReportView.print_winner_by_tournament(TournamenController.tournaments, TournamenController.winners)
+                ReportView.print_winner_by_tournament(data.get["winners",[]])
             elif choice == 7:
                 print("Exiting the program. Goodbye!")
                 break

@@ -63,18 +63,15 @@ class MainController:
                 print("Incomplete rounds found in the tournament. Please complete the rounds before adding players.")
             else:
                 PlayerController.showplayer()
-                while tournament:
-                    player_id = MainView.validate_int("Enter the ID of the player to add: ")
-                    player = PlayerController.get_player_by_id(player_id)
-                    if player is not None:
-                        tournament.add_player(player)
-                        print(f"Player '{player.first_name}' added to the tournament.")
-                    else:
-                        print("Invalid player ID. Please enter a valid ID.")
-                    if len(tournament.players)>=8:
-                        option = MainView.validate_yes("\nDo you want to add another player? (y/n): ")
-                        if not option:
-                            break
+                if tournament:
+                    for i in range (8):
+                        player_id = MainView.validate_int("Enter the ID of the player to add: ")
+                        player = PlayerController.get_player_by_id(player_id)
+                        if player is not None:
+                            tournament.add_player(player)
+                            print(f"Player '{player.first_name}' added to the tournament.")
+                        else:
+                            print("Invalid player ID. Please enter a valid ID.")
         else:
             print("Tournament not found. Please enter a valid tournament ID.")
     
@@ -83,24 +80,30 @@ class MainController:
         if TournamenController.tournaments:
             tournament_id = MainView.validate_int("Enter the ID of the tournament: ")
             tournament = TournamenController.get_tournament(tournament_id)
-            
+
             if tournament:
-                
+                if len(tournament.rounds) >= 4:
+                    print("Error, you cannot create more than 4 rounds for the selected tournament.")
+                    return
+
                 while True:
                     choice = MainView.validate_yes("\nDo you want to create a round? (y/n): ")
                     if choice:
                         new_round = RoundController.create_round()
                         tournament.add_round(new_round)
+                        if len(tournament.rounds) >= 4:
+                            print("You have created 4 rounds. No more rounds can be created for this tournament.")
+                            break
                     else:
                         break
 
-                    print("Rounds created successfully.")
-                    ReportController.save_data()
+                print("Rounds created successfully.")
+                ReportController.save_data()
             else:
                 print("Invalid tournament ID. The selected tournament does not exist.")
         else:
             print("Error, you must create a tournament first.")
-
+        
     def create_matches():
         tournament_id = MainView.validate_int("Enter the ID of the tournament: ")
         selected_tournament = TournamenController.get_tournament(tournament_id)
