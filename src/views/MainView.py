@@ -18,7 +18,6 @@ class MainView:
         print("6. Reports")
         print("7. Save Data (JSON)")
         print("8. Load Data (JSON)")
-        print("9. Insert Test Data (Default Players & Tournament)")
         print("0. Exit")
         print("\n______________________________\n\n")
 
@@ -75,4 +74,3 @@ class MainView:
                 return user_input
             except ValueError:
                 print("Error please insert 0, 0.5, 1 ")
-

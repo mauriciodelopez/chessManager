@@ -14,7 +14,6 @@ class ReportController:
     @staticmethod
     def generate_reports():
         data = ReportController.load_data()
-        print(data)
         if not data :
             return "error"
         while True:
@@ -29,10 +28,12 @@ class ReportController:
             elif choice == 4:
                 ReportView.print_players_by_tournament(data["tournaments"])
             elif choice == 5:
-                ReportView.print_list_of_rounds(data["rounds"])
+                ReportView.print_list_of_rounds(data["tournaments"])
             elif choice == 6:
-                ReportView.print_winner_by_tournament(data.get["winners",[]])
+                ReportView.print_list_of_matches(data["tournaments"])
             elif choice == 7:
+                ReportView.print_winner_by_tournament(data["tournaments"],data["winners"])
+            elif choice == 8:
                 print("Exiting the program. Goodbye!")
                 break
             else:
@@ -107,8 +108,9 @@ class ReportController:
                             round_.add_matche(match_)
 
             PlayerController.players = [Player(**p_data) for p_data in data["players"]]
-
+            return data
         except FileNotFoundError:
             print("File not found")
         except Exception as e:
             print("Error: ", str(e))
+

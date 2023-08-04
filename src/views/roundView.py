@@ -24,3 +24,4 @@ class RoundView():
         
         print("Round ended")
         return str(datetime.now().strftime('%H:%M:%S,%d/%m/%Y'))
+
