@@ -39,8 +39,8 @@ class ReportView:
             tournament = tournaments[tournament_id - 1]
             print("ID: ",tournament["ID"])
             print("Name: ",tournament["name"])
-            print("Location: ",tournament["location"])
-            print("Date start",tournament["date_start"])
+            print("Location: ", tournament["location"])
+            print("Date start", tournament["date_start"])
             print("Date end",tournament["date_end"])
             print("Number rounds",tournament["number_rounds"])
             print("\n_____________________________________________\n")
