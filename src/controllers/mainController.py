@@ -8,6 +8,9 @@ from controllers.reportController import ReportController
 class MainController:
     @classmethod
     def main_menu(cls):
+        """
+        Main menu of the application.
+        """
         ReportController.load_data()
         while True:
             choice = MainView.showMenu()
@@ -49,7 +52,10 @@ class MainController:
 
     @staticmethod
     def add_players_to_tournament():
-        tournament_id = MainView.validate_int ("Enter the ID of the tournament: ")
+        """
+        Adds players to a tournament.
+        """
+        tournament_id = MainView.validate_int("Enter the ID of the tournament: ")
         tournament = TournamenController.get_tournament(tournament_id)
         if tournament is not None:
             incomplete_rounds = TournamenController.get_incomplete_rounds(tournament)
@@ -65,11 +71,15 @@ class MainController:
                             tournament.add_player(player)
                             print(f"Player '{player.first_name}' added to the tournament.")
                         else:
-                            print("Invalid player ID.Please enter a valid ID.")
+                            print("Invalid player ID. Please enter a valid ID.")
         else:
             print("Tournament not found. Please enter a valid tournament ID.")
 
+    @staticmethod
     def create_rounds():
+        """
+        Creates rounds for a tournament.
+        """
         if TournamenController.tournaments:
             tournament_id = MainView.validate_int("Enter the ID of the tournament: ")
             tournament = TournamenController.get_tournament(tournament_id)
@@ -80,12 +90,12 @@ class MainController:
                     return
 
                 while True:
-                    choice = MainView.validate_yes("\nDo you want to create a round?(y/n): ")
+                    choice = MainView.validate_yes("\nDo you want to create a round? (y/n): ")
                     if choice:
-                        new_round = RoundController.create_round() 
+                        new_round = RoundController.create_round()
                         tournament.add_round(new_round)
                         if len(tournament.rounds) >= 4:
-                            print("You have created 4 rounds.No more rounds can be created for this tournament.")
+                            print("You have created 4 rounds. No more rounds can be created for this tournament.")
                             break
                     else:
                         break
@@ -93,11 +103,15 @@ class MainController:
                 print("Rounds created successfully.")
                 ReportController.save_data()
             else:
-                print("Invalid tournament ID.The selected tournament does not exist.")
+                print("Invalid tournament ID. The selected tournament does not exist.")
         else:
             print("Error, you must create a tournament first.")
 
+    @staticmethod
     def create_matches():
+        """
+        Creates matches for a tournament.
+        """
         tournament_id = MainView.validate_int("Enter the ID of the tournament: ")
         selected_tournament = TournamenController.get_tournament(tournament_id)
 
@@ -109,7 +123,7 @@ class MainController:
                 print(f"Round {round_.round_number}: {round_.name}")
 
             # Check if all rounds have ended before entering the while loop
-            all_rounds_ended = all(round_.end_time != ""for round_ in selected_tournament.rounds)
+            all_rounds_ended = all(round_.end_time != "" for round_ in selected_tournament.rounds)
 
             while not all_rounds_ended:
                 try:
@@ -123,8 +137,8 @@ class MainController:
 
                         # Check if the current round has ended
                         if current_round.end_time == "":
-                            round_players = {player.ID: 0 for player in selected_tournament.players} 
-                            match_list = current_round.get_match_pairing (round_players, current_round.round_number)
+                            round_players = {player.ID: 0 for player in selected_tournament.players}
+                            match_list = current_round.get_match_pairing(round_players, current_round.round_number)
 
                             max_matches = len(selected_tournament.players) // 2
                             num_matches_created = len(current_round.matches)
@@ -132,26 +146,30 @@ class MainController:
                             while num_matches_created < max_matches:
                                 choice = MainView.validate_yes("\nDo you want to create a match? (y/n): ")
                                 if choice:
-                                    RoundController.generate_matches(selected_tournament,current_round.round_number,round_players, match_list,num_matches_created)
+                                    RoundController.generate_matches(selected_tournament,
+                                                                     current_round.round_number,
+                                                                     round_players,
+                                                                     match_list,
+                                                                     num_matches_created)
                                     num_matches_created += 1
                                     ReportController.save_data()
 
                                     if num_matches_created == max_matches:
-                                        num_matches_created = 0 # Reset num_matches_create when the round is ended
+                                        num_matches_created = 0  # Reset num_matches_created when the round is ended
                                         RoundController.resume_round(current_round)
                                         ReportController.save_data()
                                         break
                                 else:
-                                    choice_round_end = MainView.validate_yes ("\nDo you want to end this round? (y/n): ")
+                                    (choice_round_end) = MainView.validate_yes("\nDo you want to end this round? (y/n): ")
                                     if choice_round_end:
-                                        num_matches_created = 0 # Reset num_matches_created when the round is ended
+                                        num_matches_created = 0  # Reset num_matches_created when the round is ended
                                         RoundController.resume_round(current_round)
                                         ReportController.save_data()
                                         break
-                            # Update the all_rounds_ended variabl after finishing the loop
+                            # Update the all_rounds_ended variable after finishing the loop
                             all_rounds_ended = all(round_.end_time != "" for round_ in selected_tournament.rounds)
                         else:
-                            print(f"Round {round_number} has already ended.Cannot create matches for this round.")
+                            print(f"Round {round_number} has already ended. Cannot create matches for this round.")
                             TournamenController.get_winner(tournament_id)
                             ReportController.save_data()
                     else:
@@ -161,7 +179,7 @@ class MainController:
 
             # Tournament end logic here, once all rounds have a final date set
             if all_rounds_ended:
-                print("All rounds have been completed.The tournament has ended.")
+                print("All rounds have been completed. The tournament has ended.")
                 TournamenController.get_winner(tournament_id)
                 ReportController.save_data()
 

@@ -1,7 +1,6 @@
 import json
 from controllers.tournamentController import TournamenController
 from controllers.playerController import PlayerController
-from controllers.roundController import RoundController
 from models.tournament import Tournament
 from models.players import Player
 from models.round import Round
@@ -14,7 +13,7 @@ class ReportController:
     @staticmethod
     def generate_reports():
         data = ReportController.load_data()
-        if not data :
+        if not data:
             return "error"
         while True:
             choice = ReportView.menu()
@@ -32,25 +31,23 @@ class ReportController:
             elif choice == 6:
                 ReportView.print_list_of_matches(data["tournaments"])
             elif choice == 7:
-                ReportView.print_winner_by_tournament(data["tournaments"],data["winners"])
+                ReportView.print_winner_by_tournament(data["tournaments"], data["winners"])
             elif choice == 8:
                 print("Exiting the program. Goodbye!")
                 break
             else:
                 print("Invalid choice. Please select a valid option.")
 
-    # recuperer l'information du JSON FILE
     @staticmethod
     def save_data():
-
         data = {
-                "tournaments": [tournament.to_dict() for tournament in TournamenController.tournaments],
-                "players": [player.to_dict() for player in PlayerController.players],
-                "winners": TournamenController.winners
-                }
+            "tournaments": [tournament.to_dict() for tournament in TournamenController.tournaments],
+            "players": [player.to_dict() for player in PlayerController.players],
+            "winners": TournamenController.winners
+        }
         with open("chess.json", 'w') as file:
             json.dump(data, file, indent=4)
-    
+
     @staticmethod
     def load_data():
         try:
@@ -94,16 +91,16 @@ class ReportController:
                     tournament.add_round(round_)
 
                     match_data = r_data["matches"]
-                    if match_data: 
+                    if match_data:
                         for m_data in match_data:
                             player1_id = m_data["player1"]
-                            player2_id = m_data.get("player2", None)  
+                            player2_id = m_data.get("player2", None)
                             match_ = Matche(
                                 m_data["ID"],
                                 m_data["scorePlayer1"],
                                 m_data["scorePlayer2"],
                                 player1_id,
-                                player2_id 
+                                player2_id
                             )
                             round_.add_matche(match_)
 
@@ -113,4 +110,3 @@ class ReportController:
             print("File not found")
         except Exception as e:
             print("Error: ", str(e))
-

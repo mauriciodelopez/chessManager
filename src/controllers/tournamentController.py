@@ -4,6 +4,7 @@ from views.tournamentView import TournamentView
 from controllers.roundController import RoundController
 from views.MainView import MainView
 
+
 class TournamenController():
     tournaments = []
     winners = []
@@ -41,7 +42,7 @@ class TournamenController():
     def show_tournament(cls):
         print("TOURNAMENT\n")
         TournamentView.show_tournament_list(cls.tournaments)
-    
+
     @classmethod
     def get_winner(cls, tournament_id):
         selected_tournament = cls.get_tournament(tournament_id)
@@ -77,11 +78,13 @@ class TournamenController():
         if selected_tournament:
             for round_ in selected_tournament.rounds:
                 RoundController.resume_round(round_)
+
     @classmethod
     def get_tournament(cls, tournament_id):
-        selected_tournament = next((tournament for tournament in cls.tournaments if tournament.ID == tournament_id), None)
+        (selected_tournament) =\
+              next((tournament for tournament in cls.tournaments if tournament.ID == tournament_id), None)
         return selected_tournament
-    
+
     @classmethod
     def get_complete_rounds(cls, tournament_id):
         tournament = cls.get_tournament(tournament_id)
@@ -92,7 +95,6 @@ class TournamenController():
             print("Tournament not found.")
             return []
 
-    
     def get_incomplete_rounds(tournament):
         incomplete_rounds = []
         for round_ in tournament.rounds:

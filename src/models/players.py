@@ -25,3 +25,4 @@ class Player:
             "date_of_birth": str(self.date_of_birth),  # Convertir date_of_birth a string
             "gender": self.gender
         }
+

@@ -5,7 +5,7 @@ class MainView:
 
     @classmethod
     def showMenu(cls):
-        
+
         print("\n______________________________")
         print("           MAIN MENU")
         print("______________________________\n")
@@ -54,6 +54,7 @@ class MainView:
                 return False
             else:
                 print("Please insert = y or n")
+
     @staticmethod
     def validate_list(prompt):
         while True:
@@ -63,7 +64,6 @@ class MainView:
                 return id_list
             except ValueError:
                 print("Error: Invalid input. Please enter a comma-separated list of integers.")
-
 
     def validate_score(prompt):
         while True:

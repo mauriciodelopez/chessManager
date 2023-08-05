@@ -7,7 +7,7 @@ class Matche():
         self.player2 = player2
         self.color_player1 = "white"
         self.color_player2 = "black"
-        
+
     def update_scores(self, scorePlayer1, scorePlayer2):
         self.scorePlayer1 += scorePlayer1
         self.scorePlayer2 += scorePlayer2

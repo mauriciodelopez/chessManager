@@ -33,3 +33,4 @@ class MatcheView():
 
         print("\nMatch ended")
         return input_score_player1, input_score_player2,
+    

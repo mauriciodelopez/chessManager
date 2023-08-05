@@ -35,7 +35,7 @@ class Tournament():
             "date_start": self.date_start,
             "date_end": self.date_end,
             "number_rounds": self.number_rounds,
-            "rounds": [round.to_dict() for round in self.rounds],  # Convertir los rounds a diccionarios
-            "players": [player.to_dict() for player in self.players],  # Convertir los players a diccionarios
+            "rounds": [round.to_dict() for round in self.rounds],
+            "players": [player.to_dict() for player in self.players],
             "description": self.description
         }

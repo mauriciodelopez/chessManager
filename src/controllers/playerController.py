@@ -44,7 +44,7 @@ class PlayerController:
         """Display all players of tournament"""
         print("\nPlAYERS OF TOURNAMENT\n")
         PlayerView.show_players_list(cls.players)
-    
+
     @classmethod
     def get_player_by_id(cls, player_id):
         for player in cls.players:
